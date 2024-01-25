@@ -193,7 +193,7 @@
         // Function to load ordinance data with pagination and search
         function loadOrdinances(page = 1, searchTerm = "") {
             $.ajax({
-                url: "http://127.0.0.1:8000/ordinances/getp?page=" + page + "&limit=10&search=" + encodeURIComponent(searchTerm),
+                url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/ordinances/getp?page=" + page + "&limit=10&search=" + encodeURIComponent(searchTerm),
                 type: "GET",
                 headers: {
                     "Authorization": "Bearer " + localStorage.getItem('token')
@@ -247,7 +247,7 @@
            
         // Function to open the file in a new tab
         window.viewFile = function (id) {
-        var fileUrl = "http://127.0.0.1:8000/ordinances/view_file/" + id;
+        var fileUrl = "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/ordinances/view_file/" + id;
     
         // Retrieve the token from localStorage
         var token = localStorage.getItem('token');
@@ -335,7 +335,7 @@
                     // DELETE ORDINANCE
                     function deleteOrdinance(ordinanceId) {
                         $.ajax({
-                            url: "http://127.0.0.1:8000/ordinances/" +ordinanceId,
+                            url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/ordinances/" +ordinanceId,
                             type: "DELETE",
                             headers: {
                                 "Authorization": "Bearer " + localStorage.getItem('token')
@@ -367,7 +367,7 @@
             function getResident(ordinanceId) {
                 console.log('Getting ordinance with ID:', ordinanceId);
                 $.ajax({
-                    url: "http://127.0.0.1:8000/ordinances/" + ordinanceId,
+                    url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/ordinances/" + ordinanceId,
                     type: "GET",
                     headers: {
                         "Authorization": "Bearer " + localStorage.getItem('token')
@@ -421,7 +421,7 @@
                 console.log('Sending data to server:',ordinanceData);
     
                 $.ajax({
-                    url: "http://127.0.0.1:8000/ordinances/" + ordinanceId,
+                    url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/ordinances/" + ordinanceId,
                     type: "PUT",
                     contentType: "application/json",
                     data: JSON.stringify(ordinanceData),
@@ -474,7 +474,7 @@
     function getOrdinanceForView(ordinanceId) {
         console.log('Getting ordinance with ID for view:', ordinanceId);
         $.ajax({
-            url: "http://127.0.0.1:8000/ordinances/" + ordinanceId,
+            url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/ordinances/" + ordinanceId,
             type: "GET",
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem('token')

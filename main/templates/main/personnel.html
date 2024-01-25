@@ -498,7 +498,7 @@
         // Function to load personnel data with pagination
         function loadPersonnels(page = 1, searchTerm = "") {
             $.ajax({
-                url: "http://127.0.0.1:8000/personnels/getp?page=" + page + "&limit=10&search=" + encodeURIComponent(searchTerm),
+                url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/personnels/getp?page=" + page + "&limit=10&search=" + encodeURIComponent(searchTerm),
                 type: "GET",
                 headers: {
                     "Authorization": "Bearer " + localStorage.getItem('token')
@@ -598,7 +598,7 @@
     // DELETE RESIDENT
         function deletePersonnel(personnelId) {
             $.ajax({
-                 url: "http://127.0.0.1:8000/personnels/" + personnelId,
+                 url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/personnels/" + personnelId,
                 type: "DELETE",
                 headers: {
                     "Authorization": "Bearer " + localStorage.getItem('token')
@@ -630,7 +630,7 @@
         function getPersonnel(personnelId) {
             console.log('Getting personnel with ID:', personnelId);
             $.ajax({
-                url: "http://127.0.0.1:8000/personnels/" + personnelId,
+                url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/personnels/" + personnelId,
                 type: "GET",
                 headers: {
                     "Authorization": "Bearer " + localStorage.getItem('token')
@@ -685,7 +685,7 @@ if (isConfirmed) {
             console.log('Sending data to server:', personnelData);
 
             $.ajax({
-                url: "http://127.0.0.1:8000/personnels/" + personnelId,
+                url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/personnels/" + personnelId,
                 type: "PUT",
                 contentType: "application/json",
                 data: JSON.stringify(personnelData),
@@ -739,7 +739,7 @@ $(document).on("click", ".view-btn", function () {
 function getPersonnelForView(personnelId) {
     console.log('Getting personnel with ID for view:', personnelId);
     $.ajax({
-        url: "http://127.0.0.1:8000/personnels/" + personnelId,
+        url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/personnels/" + personnelId,
         type: "GET",
         headers: {
             "Authorization": "Bearer " + localStorage.getItem('token')
