@@ -1,3 +1,4 @@
+<div id="whole-content" style="display: none;">
 {% extends 'main/index.html' %}
 {% load static %}
 {% block content %}
@@ -51,14 +52,15 @@
                   <h4 class="custom-h4" style="color: #606c38">Clearances and<br> Permit</h4>
               </button>
           </div>
-          <div class="col-md-auto">
+          <!-- <div class="col-md-auto">
               <button class="hover-button mb-3" onclick="window.location.href='/doc_management/'">
                   <div class="d-flex flex-row mb-3"><i class="icon fas fa-file" style="color: #fcac5d"></i></div>
                   <h4 class="custom-h4" style="color: #fcac5d">Document<br>Management</h4>
               </button>
-          </div>
+          </div> -->
       </div>
   </div>
+</div><!--div protection-->
 
  </body>
 </html>
@@ -73,10 +75,14 @@
  {% block js %}
  <script src="{% static 'js/landing.js' %}" defer></script>
  <script>
+   //SECURITY--------------
     // Check for the token when the page loads
     document.addEventListener("DOMContentLoaded", function() {
          var token = localStorage.getItem('token');
-         if (!token) {
+         if (token) {
+             // Show the services content if the token is present
+             document.getElementById('whole-content').style.display = 'block';
+         } else {
              // Redirect to login if token is not present
              window.location.href = "/login";  // Adjust the login page URL if necessary
          }

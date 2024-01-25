@@ -1,4 +1,3 @@
-
 {% extends 'main/index.html' %}
 {% load static %}
 {% block content %}
@@ -78,26 +77,27 @@
         </div>
    <!-- View Modal -->
 <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-modal="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="viewModalLabel">Clearance/Permit Request</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="javascript:void(0);">
+                <form  method="get">
                        <!-- Image Container -->
                        <div class="col-12 text-center">
                         <div class="square-container">
                             <label for="formFileMultiple" class="form-label1">Valid ID</label>
-                            <img src="" alt="Preview Image" id="previewImage" class="img-fluid rounded" style="max-width: 100%; max-height: 100%;">
+                            <img src="" alt="Preview Image" id="previewImage" class="img-fluid rounded" style="max-width: 200px; max-height: 200px;">
                         </div> 
                     </div>
+                    
                     <div class="row g-4">
                         <div class="col-xxl-3 col-md-6">
                             <div class="asterisk">
                                 <label for="Name" class="form-label1">Request:</label>
-                                <span id="type_of_request"></span>
+                                <span class="type-request" id="type_of_request"></span>
                             </div>
                         </div>
                     </div> <!--end row-->
@@ -105,7 +105,7 @@
                         <div class="col-xxl-3 col-md-6">
                             <div class="asterisk">
                                 <label for="name_of_resident" class="form-label1">Name of Resident:</label>
-                                <span id="name_of_resident"></span>
+                                <span class="name-resident" id="name_of_resident"></span>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
@@ -133,24 +133,31 @@
                         <div class="col-xxl-3 col-md-6">
                             <div class="asterisk">
                                 <label for="email" class="form-label1">Email:</label>
-                                <span id="email"></span>
+                                <span class="user-email" id="email"></span>
                             </div>
                         </div>
                     </div> <!--end row-->
                         <div class="col-xxl-3 col-md-6">
                             <div class="asterisk">
                                 <label for="date_requested" class="form-label1">Date Requested</label>
-                                <span id="date_requested"></span>
+                                <span class="date-request" id="date_requested"></span>
                                 <!-- Add your file input or any other relevant markup -->
                             </div>
                         </div>
+                        
                     <!-- end row -->
                     <!--APPROVE BUTTON-->
                     <div class="approve-button">
-                        <button id="approveButton" type="button" class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#firstmodal">Approve</button>
+                        <br>
+                        <button id="approveButton"  data-user-id="{{clearances_permit.id}}" type="button" class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#firstmodal">Approve</button>
+                 </div>
+                 <div class="release-button">
+                    <br>
+                    <button id="releaseButton"  data-user-id="{{clearances_permit.id}}" type="button" class="btn btn-soft-secondary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#firstmodal">Release</button>
+             </div>
 
-                    <!-- DECLINE BUTTON -->
-                    <a href="{% url 'clearance_permit' %}" class="btn btn-light" id="declineButton">Decline</a>
+                 <div class="decline-button">   
+                    <button id="declineButton"  data-user-id="{{clearances_permit.id}}" type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#firstmodal">Decline</button>     <!-- DECLINE BUTTON -->
                     </div>
                 </form>
             </div><!-- end of modal body -->
@@ -179,7 +186,7 @@ $(document).ready(function () {
     // Function to load barangay official data with pagination
     function loadClearancesPermits(page = 1, searchTerm = "") {
         $.ajax({
-            url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/clearancespermits/getp?page=" + page + "&limit=10&search=" + encodeURIComponent(searchTerm),
+            url: "http://127.0.0.1:8000/clearancespermits/getp?page=" + page + "&limit=10&search=" + encodeURIComponent(searchTerm),
             type: "GET",
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem('token')
@@ -263,7 +270,7 @@ $(document).ready(function () {
         // Function to load specific clearance permit data
         function loadClearancePermitDetails(id) {
             $.ajax({
-                url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/clearancespermits/" + id,
+                url: "http://127.0.0.1:8000/clearancespermits/" + id,
                 type: "GET",
                 headers: {
                     "Authorization": "Bearer " + localStorage.getItem('token')
@@ -296,69 +303,6 @@ $(document).ready(function () {
         });
     });
 
-// EMAIL 
-    // Add an event listener to the "Approve" button
-    document.getElementById('approveButton').addEventListener('click', function() {
-            // Trigger the Email.send function
-            Email.send({
-                Host: "smtp.elasticemail.com",
-                Username: "mikapmarquez@gmail.com",
-                Password: "4F39070456D7F994F26A169505B1AD1DA300",
-                To: "mrqzmik@gmail.com",
-                From: "Barangay PH",
-                Subject: "Clearance/Permit Approved!",
-                Body: "Your clearance/permit is approved!"
-            }).then(
-                message => alert(message)
-            );
-        });
-
-//EMAIL APPROVED
-const approveButtons = document.getElementsByClassName('approve');
-
-for (let i = 0; i < approveButtons.length; i++) {
-  approveButtons[i].addEventListener('click', (e) => {
-    e.preventDefault();
-
-    const row = e.target.closest('tr');
-    const firstName = row.querySelector('.first-name').textContent;
-    const middleName = row.querySelector('.middle-name').textContent;
-    const lastName = row.querySelector('.last-name').textContent;
-    const userEmail = row.querySelector('.user-email').textContent;
-    const userId = e.target.getAttribute('data-user-id');
-
-    // Generate a random temporary password
-    const temporaryPassword = generateTemporaryPassword(8);
-
-    let emailBody = `
-      Good Day! Madam/ Sir <b>${firstName} ${middleName} ${lastName}</b>, we extend our gratitude for registering an account on AyudaGo. <br>
-      Here's your Temporary Password: <b>${temporaryPassword}</b>
-    `;
-
-    Email.send({
-      SecureToken: "4f8d5b81-06e5-43e5-9ba3-c88091d76471", // Add your token here
-      To: userEmail,
-      From: "ayudagoph2023@gmail.com",
-      Subject: "AyudaGo: Temporary Password",
-      Body: emailBody
-    }).then(message => {
-      // Send a GET request to the approval route
-      fetch(`/approve_user/${userId}?user_password=${encodeURIComponent(temporaryPassword)}`, { method: 'GET' })
-
-        .then(response => {
-          if (response.ok) {
-            // Redirect to the success page after the approval
-            window.location.href = '/accounts';
-          } else {
-            // Handle error response
-            console.error('Error approving user');
-          }
-        });
-    });
-  });
-}
-
-
 //SECURITY--------------
      // Check for the token when the page loads
      document.addEventListener("DOMContentLoaded", function() {
@@ -374,5 +318,9 @@ for (let i = 0; i < approveButtons.length; i++) {
     });
     
 </script>
+
+<script src="/static/js/release.js"></script>
+<script src="/static/js/approve.js"></script>
+<script src="/static/js/decline.js"></script>
 {% endblock %}
 {% endblock %}
