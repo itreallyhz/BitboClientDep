@@ -210,9 +210,10 @@
     formData.append('contact_no', $('#contact_no').val());
     formData.append('email', $('#email').val());
     formData.append('date_requested', $('#date_requested').val());
-    formData.append('date_scheduled', $('#date_scheduled').val());
-    formData.append('date_released', $('#date_released').val());
-    formData.append('date_received', $('#date_received').val());
+     // Set default values for date_scheduled, date_released, and date_received
+    formData.append('date_scheduled', '01/02/2024');
+    formData.append('date_released', '01/02/2024');
+    formData.append('date_received', '01/02/2024');
 
     var fileInput = $('#valid_id_path')[0];
 
