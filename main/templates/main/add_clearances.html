@@ -20,7 +20,7 @@
                             <div class="row">
                                 <div class="col-xxl-3 col-md-6">
                                     <div class="asterisk">
-                                        <label for="firstname" class="form-label fs-14">Name <span>*</span></label>
+                                        <label for="firstname" class="form-label ">Name <span>*</span></label>
                                         <input type="form" class="form-control" id="name_of_resident" placeholder="Name">
                                     </div>
                                 </div>
@@ -28,7 +28,7 @@
                         
                                 <div class="col-xxl-3 col-md-6">
                                     <div class="asterisk">
-                                             <label for="Request" class="form-label fs-14">Type of Request <span>*</span></label>
+                                             <label for="Request" class="form-label ">Type of Request <span>*</span></label>
                                              <div class="input-group">
                                                 <select class="form-select" id="type_of_request">
                                                     <option value="" disabled selected>Select a Request</option>
@@ -40,7 +40,7 @@
                                          </div>
                                          <div class="col-xxl-3 col-md-6">
                                             <div class="asterisk">
-                                                <label for="" class="form-label fs-14">Request <span>*</span></label>
+                                                <label for="" class="form-label ">Request <span>*</span></label>
                                                 <input type="form" class="form-control" id="request" placeholder="Add a request">
                                             </div>
                                         </div>
@@ -48,64 +48,61 @@
                                         <!--end col-->
                                         <div class="col-xxl-3 col-md-6">
                                             <div class="asterisk">
-                                                <label for="" class="form-label fs-14">Permit <span>*</span></label>
+                                                <label for="" class="form-label ">Permit <span>*</span></label>
                                                 <input type="form" class="form-control" id="permit" placeholder="Add a request">
                                             </div>
                                         </div>
 
                                     <div class="col-xxl-3 col-md-6">
                                         <div class="asterisk">
-                                            <label for="" class="form-label fs-14">Reason <span>*</span></label>
+                                            <label for="" class="form-label "><br>Reason <span>*</span></label>
                                             <input type="form" class="form-control" id="reason" placeholder="Add a reason">
                                         </div>
                                     </div>
                                     <div class="col-xxl-3 col-md-6">
                                         <div class="asterisk">
-                                            <label for="" class="form-label fs-14">Contact Number <span>*</span></label>
+                                            <label for="" class="form-label "><br>Contact Number <span>*</span></label>
                                             <input type="form" class="form-control" id="contact_no" placeholder="Add a contact number">
                                         </div>
                                     </div>
                                     <div class="col-xxl-3 col-md-6">
                                         <div class="asterisk">
-                                            <label for="" class="form-label fs-14">Email<span>*</span></label>
+                                            <label for="" class="form-label "><br>Email<span>*</span></label>
                                             <input type="email" class="form-control" id="email" placeholder="Add email">
                                         </div>
                                     </div>
                                     
                                     <div class="col-xxl-3 col-md-6">
                                         <div class="asterisk">
-                                            <label for="exampleInputdate" class="form-label">Date Requested <span>*</span></label>
+                                            <label for="exampleInputdate" class="form-label"><br>Date Requested <span>*</span></label>
                                             <input type="date" class="form-control" id="date_requested" required>
                                         </div>
                                     </div>
-
-                                <!--
                                     <div class="col-xxl-3 col-md-6">
                                         <div class="asterisk">
-                                            <label for="exampleInputdate" class="form-label">Date Scheduled <span>*</span></label>
-                                            <input type="text" class="form-control" id="date_scheduled" value="01/01/2020" required>
+                                            <label for="exampleInputdate" class="form-label"><br>Date Scheduled <span>*</span></label>
+                                            <input type="date" class="form-control" id="date_scheduled" required>
                                         </div>
                                     </div>
                                     <div class="col-xxl-3 col-md-6">
                                         <div class="asterisk">
-                                            <label for="exampleInputdate" class="form-label">Date Released <span>*</span></label>
-                                            <input type="text" class="form-control" id="date_released" value="01/01/2020" required>
+                                            <label for="exampleInputdate" class="form-label"><br>Date Released <span>*</span></label>
+                                            <input type="date" class="form-control" id="date_released" required>
                                         </div>
                                     </div>
                                     <div class="col-xxl-3 col-md-6">
                                         <div class="asterisk">
-                                            <label for="exampleInputdate" class="form-label">Date Received <span>*</span></label>
-                                            <input type="text" class="form-control" id="date_received" value="01/01/2020" required>
+                                            <label for="exampleInputdate" class="form-label"><br>Date Received <span>*</span></label>
+                                            <input type="date" class="form-control" id="date_received" required>
                                         </div>
                                     </div>
-                                -->
                             
                                 <!--end col-->
                                 <div class="row">
                                  
                                          <div class="col-xxl-3 col-md-6">
                                                 <div class="asterisk">
-                                             <label for="formFile" class="form-label fs-14"><br>Valid ID <span>*</span></label>
+                                             <label for="formFile" class="form-label "><br>Valid ID <span>*</span></label>
                                         <input class="form-control" type="file" id="valid_id_path" />
                                         </div>
                                     </div>
@@ -210,10 +207,9 @@
     formData.append('contact_no', $('#contact_no').val());
     formData.append('email', $('#email').val());
     formData.append('date_requested', $('#date_requested').val());
-     // Set default values for date_scheduled, date_released, and date_received
-    formData.append('date_scheduled', '01/02/2024');
-    formData.append('date_released', '01/02/2024');
-    formData.append('date_received', '01/02/2024');
+    formData.append('date_scheduled', $('#date_scheduled').val());
+    formData.append('date_released', $('#date_released').val());
+    formData.append('date_received', $('#date_received').val());
 
     var fileInput = $('#valid_id_path')[0];
 
@@ -227,7 +223,7 @@
     console.log("Form Data:", formData);
 
     $.ajax({
-        url: 'https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/clearancespermits/add',
+        url: 'http://127.0.0.1:8000/clearancespermits/add',
         type: 'POST',
         headers: {
             "Authorization": "Bearer " + localStorage.getItem('token')

@@ -1,0 +1,66 @@
+
+li a span {
+    font-size: medium;
+    }
+    .asterisk span{
+      color: red;
+    }
+    .button-container {
+      display: flex; /* Enable flexbox layout */
+      align-items: center; /* Align items vertically in the center */
+      margin-left: 90%;
+  }
+  
+  .save-button {
+      width: 10px;
+      margin-left: 10px; /* Add some space between the link and the button */
+  }
+  
+  .square{
+    margin-top: 0.5%;
+  }
+  /* dropdown with another fields */
+  /* #additionalFieldsEmployed {
+    margin-top: 20px; /* Adjust the margin-top as needed 
+    
+  } 
+  #additionalFieldsStudent{
+    margin-left: 50%;
+  }
+  
+  #elementaryFields{
+    margin-left: 50%;
+  }
+  #highSchoolFields{
+    margin-left: 50%;
+  }
+  #seniorHighSchoolFields{
+    margin-left: 50%;
+  }
+  #indigenousYes{
+  } */
+  .asterisk label.form-label {
+    font-size: 16px; /* Adjust the font size as needed */
+    /* You can add more styling properties as needed */
+  }
+  /* Style placeholders */
+  .asterisk input::placeholder,
+  .asterisk textarea::placeholder,
+  .asterisk input[type="date"],
+  .asterisk select {
+    color: gray; /* Adjust the color as needed */
+    /* You can add more styling properties as needed */
+    font-size: 16px;
+  }
+  .optional select{
+    color: gray; 
+    font-size: 16px;
+  }
+  .optional label.form-label,
+  .optional input[type='text'] {
+    font-size: 16px; /* Adjust the font size as needed */
+    /* You can add more styling properties as needed */
+  }
+  .asterisk input[type="file"]{
+    font-size: 16px;
+  }

@@ -23,7 +23,7 @@
                                             <div class="row gy-2">
                                                 <div class="col-xxl-6 col-md-12">
                                                     <div class="asterisk">
-                                                        <label for="regions" class="form-label">Region<span>*</span></label>
+                                                        <label for="regions" class="form-label">Region <span>*</span></label>
                                                         <select class="form-select" id="regions" required>
                                                             <option value="" disabled selected>Select Region</option>
                                                         </select>
@@ -33,7 +33,7 @@
                                                <!-- Provinces -->
                                                <div class="col-xxl-6 col-md-12">
                                                    <div class="asterisk">
-                                                       <label for="provinces" class="form-label">Provinces<span>*</span></label>
+                                                       <label for="provinces" class="form-label">Provinces <span>*</span></label>
                                                        <select class="form-select" id="provinces" required>
                                                             <option value="" disabled selected>Select Provinces</option>
                                                    </select>
@@ -42,7 +42,7 @@
                                                <!-- Municipality -->
                                                <div class="col-xxl-6 col-md-12">
                                                    <div class="asterisk">
-                                                   <label for="Municipality" class="form-label">Municipality<span>*</span></label>
+                                                   <label for="Municipality" class="form-label">Municipality <span>*</span></label>
                                                    <select class="form-select" id="municipalities" required>
                                                        <option value="" disabled selected>Select Municipality</option>
                                                        <option value="">Municipality</option>
@@ -52,7 +52,7 @@
                                                <!-- District -->
                                                <div class="col-xxl-6 col-md-12">
                                                    <div class="asterisk">
-                                                   <label for="District" class="form-label">District<span>*</span></label>
+                                                   <label for="District" class="form-label">District <span>*</span></label>
                                                    <select class="form-select" id="districts" required >
                                                        <option value="" disabled selected>Select District</option>
                                                    </select>
@@ -74,10 +74,12 @@
                                                 -->
                                                 <div>
                                                     <br>
-                                                    <label for ="barangays">Barangay*</label>
+                                                    <div class="asterisk">
+                                                    <label for ="barangays" class="form-label">Barangay <span>*</span></label>
                                                     <br>
                                                     <input type="text" id="barangays">
                                                 </div>
+                                            </div>
 
                                                <div class="modal-footer">
                                             </form>
@@ -254,7 +256,7 @@ $(document).ready(function () {
         };
 
         $.ajax({
-            url: 'https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/configurations/add',
+            url: 'http://127.0.0.1:8000/configurations/add',
             type: "POST",
             dataType: "json",
             headers: {

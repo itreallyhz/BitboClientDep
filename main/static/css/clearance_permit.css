@@ -14,3 +14,35 @@
   .modal-dialog{
     margin-top:5%;
   }
+  span{
+    font-size: large;
+  }
+  .approve-button{
+    margin-left: 65%;
+  }
+  .release-button{
+    margin-left: 78%;
+    margin-top: -8%;
+  }
+  .decline-button{
+    margin-left: 90%;
+    margin-top: -5%;
+  }
+  .btn{
+    font-size: 16px; /* Adjust the font size for the primary button */
+    /* You can add more styling properties as needed */
+  }
+  
+  .search-box {
+    font-size: 16px; /* Adjust the font size for the search box */
+    /* You can add more styling properties as needed */
+  }
+  
+  .search {
+    font-size: 16px; /* Adjust the font size for the search input */
+    /* You can add more styling properties as needed */
+  }
+  
+  table{
+    font-size: 16px;
+  }

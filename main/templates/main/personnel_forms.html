@@ -28,9 +28,9 @@
                                             </div>
                                             <!--end col-->
                                             <div class="col-xxl-3 col-md-6">
-                                                <div class="asterisk">
-                                                    <label for="labelInput" class="form-label">Middle Name <span>*</span></label>
-                                                    <input type="form" class="form-control" id="middle_name" placeholder="Middle Name" >
+                                                <div class="optional">
+                                                    <label for="labelInput" class="form-label">Middle Name (Optional) </label>
+                                                    <input type="text" class="form-control" id="middle_name" placeholder="Middle Name" >
                                                 </div>
                                             </div>
                                             <!--end col-->
@@ -42,7 +42,7 @@
                                             </div>
                                             <!--end col-->
                                             <div class="col-xxl-3 col-md-6">
-                                               <div class="asterisk">
+                                               <div class="optional">
                                                         <label for="Suffix" class="form-label">Suffix</label>
                                                         <div class="input-group">
                                                             <select class="form-select" id="suffix" >
@@ -124,7 +124,7 @@
                                                                                 <h4 class="mb-3">Are you sure you want to cancel?</h4>
                                                                                 <div class="hstack gap-2 justify-content-center">
                                                                                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">No</button>
-                                                                                    <a href="javascript:void(0);" class="btn btn-danger">Yes</a>
+                                                                                    <a href="{% url 'personnel' %}" class="btn btn-danger">Yes</a>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -132,42 +132,8 @@
                                                                 </div><!-- /.modal-dialog -->
                                                             </div><!-- /.modal -->
                                                         <div class="save-button">
-                                                            <button type="button" class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#firstmodal">Save</button>
-                                                                    <!-- First modal dialog -->
-                                                                            <div class="modal fade" id="firstmodal" aria-hidden="true" tabindex="-1">
-                                                                                <div class="modal-dialog modal-dialog-centered">
-                                                                                    <div class="modal-content">
-                                                                                        <div class="modal-body text-center p-5">
-                                                                                            <lord-icon src="https://cdn.lordicon.com/tdrtiskw.json" trigger="loop" colors="primary:#f7b84b,secondary:#405189" style="width:130px;height:130px">
-                                                                                            </lord-icon>
-                                                                                            <div class="mt-4 pt-4">
-                                                                                                <h4>Are you sure you want to save it?</h4>
-                                                                                             <!-- Toogle to second dialog -->
-                                                                                             <button class="btn btn-light" data-bs-target="#firstmodal" data-bs-toggle="modal" data-bs-dismiss="modal">Cancel</button>
-                                                                                             <button class="btn btn-warning" data-bs-target="#secondmodal" data-bs-toggle="modal" data-bs-dismiss="modal" onclick="submitForm()">Yes</button>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <!-- Second modal dialog -->
-                                                                            <div class="modal fade" id="secondmodal" aria-hidden="true" tabindex="-1">
-                                                                                <div class="modal-dialog modal-dialog-centered">
-                                                                                    <div class="modal-content">
-                                                                                        <div class="modal-body text-center p-5">
-                                                                                            <lord-icon src="https://cdn.lordicon.com/zpxybbhl.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:150px;height:150px">
-                                                                                            </lord-icon>
-                                                                                            <div class="mt-4 pt-3">
-                                                                                                <h4 class="mb-3">Your forms are succesfully saved!</h4>
-                                                                                                <div class="hstack gap-2 justify-content-center">
-                                                                                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div><!-- end save button -->
+                                                            <button type="button" class="btn btn-success waves-effect waves-light" id="confirmSubmitBtn">Save</button>                                                      
+                                                        </div><!-- end save button -->
                                                                     </div><!-- end button container -->
                                                                 </div><!-- end live preview -->
                                                             </div><!-- end card body (Start button) -->
@@ -182,15 +148,46 @@
                                             
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+<link rel="stylesheet" href="{% static 'css/admin_forms.css' %}">
 {% endblock %}
 
 {% block js %}
     <script src="{% static 'js/form.js' %}"></script>
     <script src="{%static 'js/occupation' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <!--CONNECTION CLIENT TO SERVER-->
     <script>
+        $("#confirmSubmitBtn").unbind('click').click(function (event) {
+        event.preventDefault();
+        var isValid = true;
+        $('.asterisk input, .asterisk select, .asterisk textarea').each(function () { // Modified selector to target all input, select, and textarea elements within elements with class .asterisk
+            var fieldValue = $(this).val();
+            if (!fieldValue || fieldValue.trim() === '') { // Check if no value is entered or if the entered value is empty
+                $(this).addClass('is-invalid');
+                isValid = false;
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Personal information fields are required! ",
+                });
+            } else {
+                $(this).removeClass('is-invalid');
+            }
+        });
+
+        if (isValid) {
+            confirmSave();
+        }
+    });
+
+    // Optional: Add an event listener to remove the red border when the user starts typing
+    $('.asterisk input, .asterisk select, .asterisk textarea').on('input', function () {
+        if ($(this).val().trim() !== '') {
+            $(this).removeClass('is-invalid');
+        }
+    });
+
     
     // Function to handle form submission
     function submitForm() {
@@ -203,10 +200,10 @@
         formData.append('last_name', $('#last_name').val());
         formData.append('suffix', $('#suffix').val());
         formData.append('birthday', $('#birthday').val());
-        formData.append('contact_no', $('#contact_no').val());
         formData.append('email', $('#email').val());
+        formData.append('contact_no', $('#contact_no').val());
         formData.append('position', $('#position').val());
-    
+        
     
         var fileInput = $('#formFile')[0];
     
@@ -217,10 +214,8 @@
             return;
         }
     
-        console.log("Form Data:", formData);
-    
         $.ajax({
-            url: 'https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/personnels/add',
+            url: 'http://127.0.0.1:8000/personnels/add',
             type: 'POST',
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem('token')
@@ -240,6 +235,29 @@
             }
         });
     }
+
+//SAVE MODAL
+function confirmSave() {
+                Swal.fire({
+                    title: "Do you want to save the changes?",
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: "Save",
+                    denyButtonText: `Don't save`
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // SweetAlert confirmation
+                        Swal.fire("Saved!", "", "success").then(() => {
+                            // Trigger the form submission when "Save" is clicked
+                            submitForm();
+                        });
+                    } else if (result.isDenied) {
+                        Swal.fire("Changes are not saved", "", "info");
+                        // Handle any additional actions or don't open the first modal
+                    }
+                });
+            }
+
     
      //SECURITY
          // Check for the token when the page loads

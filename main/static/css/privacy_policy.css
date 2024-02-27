@@ -1,6 +1,24 @@
-p {
+.square{
+    margin-top: -2%;
+
+  }
+  /* .clear{
+    margin-top: -2%;
+    margin-left: 25%;
+  } */
+  .center-div {
+    margin-left: 48%;
+  }
+  body {
+    overflow-x: hidden;
+  }
+  p {
+    font-size: 16px; /* Change the font size as needed */
     color: black;
 }
-.text-color{
-    color:black;
+
+.text-muted ul,
+.text-muted li {
+    font-size: 16px; /* Change the font size as needed */
+    color: black;
 }

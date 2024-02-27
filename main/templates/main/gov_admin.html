@@ -9,26 +9,37 @@
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                     <h4 class="mb-sm-0">GOVERNANCE AND ORDINANCES</h4>
-                    <div class="hstack gap-2">
-                        <a href="{% url 'view_gov' %}" class="btn btn-primary">
-                            <i class="ri-add-line align-bottom me-1"></i> Add Ordinances
-                          </a>
-                    </div>
+                    
+                </div>
                 </div>
                 <!--end col-->
-                <div class="col-lg-3 col-auto">
-                    <div class="search-box">
-                        <input type="text" class="form-control search" id="searchInput" placeholder="Search for Governance and Ordinances">
-                        <i class="ri-search-line search-icon"></i>
-                    </div>
-                </div>
+                
             </div>
 
 
-        <div class="row h-100">
-            <div class="col-12">
                 <div class="card">
                     <div class="card-body">
+                        <div class="row g-2">
+                    <div class="col-lg-auto">
+                        <div class="hstack gap-2">
+                            <a href="{% url 'view_gov' %}" class="btn btn-primary">
+                                <i class="ri-add-line align-bottom me-1"></i> Add Ordinances
+                              </a>
+                        </div>
+                        </div>
+                        <div class="col-lg-3 col-auto">
+                            <div class="search-box">
+                                <input type="text" class="form-control search" id="searchInput" placeholder="Search for Governance and Ordinances">
+                                <i class="ri-search-line search-icon"></i>
+                            </div>
+                        </div>
+                        </div>
+                        </div>
+                        <div class="row h-100">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+
                         <table class="table table-striped display" style="width:100%" id="userList">
                             <thead>
                                 <tr>
@@ -182,86 +193,91 @@
     <!-- container-fluid -->
     
     {% block css %}
-    <link href="{% static 'css/profiles.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/ordinances.css' %}" rel="stylesheet" type="text/css" />
     {% endblock %}
     
     {% block js %}
-    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" ></script>
     <script>
     $(document).ready(function () {
-        // Function to load ordinance data with pagination and search
-        function loadOrdinances(page = 1, searchTerm = "") {
-            $.ajax({
-                url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/ordinances/getp?page=" + page + "&limit=10&search=" + encodeURIComponent(searchTerm),
-                type: "GET",
-                headers: {
-                    "Authorization": "Bearer " + localStorage.getItem('token')
-                },
-                success: function (data) {
-                    // Clear existing data
-                    $("#ordinanceTableBody").empty();
-    
-                    // Check if ordinances data is available
-                    if (data.data.length > 0) {
-                        // Iterate through ordinances and append rows to the table
-                        $.each(data.data, function (index, ordinance) {
+    // Global variable to store the deleted ordinance ID
+    var deletedOrdinanceId;
+
+    // Function to load ordinance data with pagination and search
+    function loadOrdinances(page = 1, searchTerm = "") {
+        $.ajax({
+            url: "http://127.0.0.1:8000/ordinances/getp?page=" + page + "&limit=10&search=" + encodeURIComponent(searchTerm),
+            type: "GET",
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('token')
+            },
+            success: function (data) {
+                // Clear existing data
+                $("#ordinanceTableBody").empty();
+
+                // Check if ordinances data is available
+                if (data.data.length > 0) {
+                    // Iterate through ordinances and append rows to the table
+                    $.each(data.data, function (index, ordinance) {
+                        // Check if the ordinance ID is the same as the one being deleted
+                        if (ordinance.id !== deletedOrdinanceId) {
                             var fileName = ordinance.file_path || 'No File';
-                            
+
                             // Generate the hyperlink with onclick to open the file in a new tab
                             var fileLink = ordinance.file_path ? '<a href="#" onclick="viewFile(\'' + ordinance.id + '\'); return false;">' + fileName + '</a>' : fileName;
-    
+
                             var buttons = '<td>' +
                                 '<button class="btn btn-soft-secondary edit-btn" data-ordinanceid="' + ordinance.id + '" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalgrid"><a href="#" class="dropdown-item"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></button>' +
                                 '<button class="btn btn-soft-primary delete-btn" data-ordinanceid="' + ordinance.id + '" type="button" aria-expanded="false"><a href="#" class="dropdown-item" onclick="event.preventDefault();"><i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a></button>' +
                                 '</td>';
-    
+
                             var row = '<tr>' +
                                 '<td>' + ordinance.title + '</td>' +
                                 '<td>' + ordinance.author + '</td>' +
                                 '<td>' + fileLink + '</td>' +
                                 buttons +
                                 '</tr>';
-    
+
                             // Append the row to the table body
                             $("#ordinanceTableBody").append(row);
-                        });
-                    } else {
-                        // Handle case when no ordinances are found
-                        $("#ordinanceTableBody").html('<tr><td colspan="5">No ordinances found</td></tr>');
-                    }
-                },
-                error: function () {
-                    // Handle error case
-                    console.error('Error fetching ordinances data.');
+                        }
+                    });
+                } else {
+                    // Handle case when no ordinances are found
+                    $("#ordinanceTableBody").html('<tr><td colspan="5">No ordinances found</td></tr>');
                 }
-            });
-        }
-    
-    
+            },
+            error: function () {
+                // Handle error case
+                console.error('Error fetching ordinances data.');
+            }
+        });
+    }
+
     // Search input change event handler
-        $("#searchInput").on("input", function () {
-                var searchTerm = $(this).val();
-                loadOrdinances(1, searchTerm);
-           });
-           
-        // Function to open the file in a new tab
-        window.viewFile = function (id) {
-        var fileUrl = "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/ordinances/view_file/" + id;
-    
+    $("#searchInput").on("input", function () {
+        var searchTerm = $(this).val();
+        loadOrdinances(1, searchTerm);
+    });
+
+    // Function to open the file in a new tab
+    window.viewFile = function (id) {
+        var fileUrl = "http://127.0.0.1:8000/ordinances/view_file/" + id;
+
         // Retrieve the token from localStorage
         var token = localStorage.getItem('token');
-    
+
         console.log('File URL:', fileUrl);
         console.log('Token:', token);
-    
+
         // Ensure the token is available
         if (token) {
             // Open the file in a new tab with the bearer token in the headers
             var newWindow = window.open(fileUrl, '_blank');
-    
+
             console.log('New Window:', newWindow);
-    
+
             // Attach an event listener to the new window's load event
             if (newWindow) {
                 newWindow.addEventListener('load', function () {
@@ -278,78 +294,100 @@
             // You might want to implement a fallback mechanism or notify the user
         }
     };
-    
-        // Initial load of ordinances data
-        loadOrdinances();
-    });
-    
+
+    // Initial load of ordinances data
+    loadOrdinances();
+
     // Function to dynamically generate pagination buttons
-        function generatePaginationButtons(totalPages) {
-         var paginationContainer = $(".pagination");
-         paginationContainer.empty();
-    
+    function generatePaginationButtons(totalPages) {
+        var paginationContainer = $(".pagination");
+        paginationContainer.empty();
+
         for (var i = 1; i <= totalPages; i++) {
             var buttons = '<td>' +
-        '<button class="btn btn-soft-secondary edit-btn" data-ordinanceid="' + ordinance.id + '" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalgrid"><a href="#" class="dropdown-item"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></button>' +
-        '<button class="btn btn-soft-primary delete-btn" data-ordinanceid="' + ordinance.id + '" type="button" aria-expanded="false"><a href="#" class="dropdown-item" onclick="event.preventDefault();"><i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a></button>' +
-        '</td>';
-        paginationContainer.append(button);
+                '<button class="btn btn-soft-secondary edit-btn" data-ordinanceid="' + ordinance.id + '" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalgrid"><a href="#" class="dropdown-item"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></button>' +
+                '<button class="btn btn-soft-primary delete-btn" data-ordinanceid="' + ordinance.id + '" type="button" aria-expanded="false"><a href="#" class="dropdown-item" onclick="event.preventDefault();"><i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a></button>' +
+                '</td>';
+            paginationContainer.append(button);
         }
     }
-    
-            // Pagination click event handler
-            $(document).on("click", ".pagination-link", function (event) {
-                event.preventDefault();
-                var page = $(this).attr("data-page");
-                loadOrdinances(page);
+
+    // Pagination click event handler
+    $(document).on("click", ".pagination-link", function (event) {
+        event.preventDefault();
+        var page = $(this).attr("data-page");
+        loadOrdinances(page);
+    });
+
+    // Variable to store the current page
+    var currentPage = 1;
+
+    // Function to load the next page
+    function loadNextPage() {
+        currentPage++;
+        loadOrdinances(currentPage);
+    }
+
+    // Function to load the previous page
+    function loadPreviousPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            loadOrdinances(currentPage);
+        }
+    }
+
+    // DELETE MODAL POP UP ---------------------------------------------------------------
+    $(document).on("click", ".delete-btn", function () {
+        var ordinanceId = $(this).data("ordinanceid");
+
+        // Display a confirmation prompt using SweetAlert
+        Swal.fire({
+            title: "Are you sure you want to delete?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // User clicked OK in the confirmation prompt
+                // Set the global variable for deleted ordinance ID
+                deletedOrdinanceId = ordinanceId;
+
+                // Call the function to delete the resident with the given ID
+                deleteOrdinance(ordinanceId);
+            }
+        });
+    });
+
+    // DELETE ORDINANCE
+    function deleteOrdinance(ordinanceId) {
+        $.ajax({
+            url: "http://127.0.0.1:8000/ordinances/" + ordinanceId,
+            type: "DELETE",
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('token')
+            },
+            success: function (data) {
+                      // Using SweetAlert for success message
+      Swal.fire({
+        title: "Deleted!",
+        text: "Your file has been deleted.",
+        icon: "success"
+      }).then(() => {
+                // Reload the ordinances after successful deletion
+                loadOrdinances();
             });
-    
-            // Variable to store the current page
-            var currentPage = 1;
-    
-            // Function to load the next page
-            function loadNextPage() {
-                currentPage++;
-                loadOrdinances(currentPage);
+            },
+            
+            error: function () {
+                // Handle error case
+                console.error('Error deleting ordinance.');
             }
-    
-            // Function to load the previous page
-            function loadPreviousPage() {
-                if (currentPage > 1) {
-                    currentPage--;
-                    loadOrdinances(currentPage);
-                }
-            }
-                    
-        // DELETE MODAL POP UP ---------------------------------------------------------------
-                    $(document).on("click", ".delete-btn", function () {
-                        var ordinanceId = $(this).data("ordinanceid");
-                        // Display a confirmation prompt before proceeding with deletion
-                        if (confirm("Are you sure you want to delete this ordinance?")) {
-                            // User clicked OK in the confirmation prompt
-                            // Call the function to delete the ordinance with the given ID
-                            deleteOrdinance(ordinanceId);
-                        }
-                    });
-    
-                    // DELETE ORDINANCE
-                    function deleteOrdinance(ordinanceId) {
-                        $.ajax({
-                            url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/ordinances/" +ordinanceId,
-                            type: "DELETE",
-                            headers: {
-                                "Authorization": "Bearer " + localStorage.getItem('token')
-                            },
-                            success: function (data) {
-                                // Reload the ordinances after successful deletion
-                                loadOrdinances();
-                            },
-                            error: function () {
-                                // Handle error case
-                                console.error('Error deleting ordinance.');
-                            }
-                        });
-                    }
+        });
+    }
+});
+
     
             // FOR EDIT MODAL Attach a click event handler to the edit buttons--------------------------------------
             $(document).on("click", ".edit-btn", function () {
@@ -367,7 +405,7 @@
             function getResident(ordinanceId) {
                 console.log('Getting ordinance with ID:', ordinanceId);
                 $.ajax({
-                    url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/ordinances/" + ordinanceId,
+                    url: "http://127.0.0.1:8000/ordinances/" + ordinanceId,
                     type: "GET",
                     headers: {
                         "Authorization": "Bearer " + localStorage.getItem('token')
@@ -421,7 +459,7 @@
                 console.log('Sending data to server:',ordinanceData);
     
                 $.ajax({
-                    url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/ordinances/" + ordinanceId,
+                    url: "http://127.0.0.1:8000/ordinances/" + ordinanceId,
                     type: "PUT",
                     contentType: "application/json",
                     data: JSON.stringify(ordinanceData),
@@ -474,7 +512,7 @@
     function getOrdinanceForView(ordinanceId) {
         console.log('Getting ordinance with ID for view:', ordinanceId);
         $.ajax({
-            url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/ordinances/" + ordinanceId,
+            url: "http://127.0.0.1:8000/ordinances/" + ordinanceId,
             type: "GET",
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem('token')

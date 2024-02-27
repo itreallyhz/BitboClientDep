@@ -59,16 +59,9 @@ form{
 margin-top: -20%;
 }
 .modal-content{
-    width: 300%;
+    width: 200%;
+    margin-left: -45%;
 }
-.modal-dialog{
-    margin-left: 12%;
-}
-/* .modal {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-} */
 .form-label1 span{
     color: red;
     font-size: 16px;
@@ -78,8 +71,9 @@ margin-top: -20%;
     display: block;
     font-size: 16px;
 }
-.btn-primary {
-    font-size: 16px; /* Adjust the font size for the primary button */
+
+.btn{
+    font-size: 16px;
     /* You can add more styling properties as needed */
   }
 
@@ -92,59 +86,3 @@ margin-top: -20%;
     font-size: 16px; /* Adjust the font size for the search input */
     /* You can add more styling properties as needed */
   }
-
-
-  /*id */
-  #first_name,
-  #middle_name,
-  #last_name,
-  #suffix,
-  #age,
-  #birthday,
-  #birth_order,
-  #birthplace,
-  #blood_type,
-  #gender,
-  #civil_status,
-  #house_no,
-  #street,
-  #phone_no,
-  #email,
-  #occupation,
-  #is_indigenous,
-  #Disability_ID,
-  #voter,
-  #precint_no,
-  #m_first_name,
-  #m_middle_name,
-  #m_last_name,
-  #m_blk,
-  #m_street,
-  #m_birthday,
-  #m_gender,
-  #m_phone_no,
-  #m_email,
-  #f_first_name,
-  #f_middle_name,
-  #f_last_name,
-  #f_blk,
-  #f_street,
-  #f_birthday,
-  #f_gender,
-  #f_phone_no,
-  #f_email
-
-  {
- font-size: 16px;
-  }
-.filter{
-    display: flex;
-    margin-left: 90%;
-    margin-top: -2.5%;
-}
-.asterisk input[type='text'],
-.asterisk select,
-.asterisk input[type='file'],
-.optional input[type='form']{
-    font-size: 16px;
-}

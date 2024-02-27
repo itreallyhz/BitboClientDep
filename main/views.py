@@ -12,6 +12,7 @@ def login(request):
 
 def SignUp(request):
     return render(request, 'main/signup.html')
+
 def services(request):
     return render(request, 'main/services.html')
 
@@ -33,7 +34,6 @@ def brgy_officials(request):
 def forms(request):
     return render(request, 'main/forms.html')
 
-
 def projects(request):
     return render(request, 'main/proj_prog.html')
 
@@ -42,6 +42,7 @@ def admin_forms(request):
 
 def gov_admin(request):
     return render(request, 'main/gov_admin.html')
+
 def incident_logs(request):
     return render(request, 'main/incident_logs.html')
 
@@ -59,24 +60,32 @@ def faqs(request):
 
 def view_proj(request):
     return render(request, 'main/view_proj.html')
+
 def view_gov(request):
     return render(request, 'main/view_gov.html')
+
 def personnel_forms(request):
     return render(request, 'main/personnel_forms.html')
+
 def personnel(request):
     return render(request, 'main/personnel.html')
+
 def add_clearances(request):
     return render(request, 'main/add_clearances.html')
 
-
 def system_config(request):
     return render(request, 'main/system_config.html')
+
 def terms_conditions(request):
     return render(request, 'main/terms_conditions.html')
+
 def signup2(request):
     return render(request, 'main/signup2.html')
 def add_incident(request):
     return render(request, 'main/add_incident.html')
+
+def terms_conditions_forms(request):
+    return render(request, 'main/terms_conditions_forms.html')
 
 #userside
 def user_login(request):
@@ -99,6 +108,7 @@ def user_officials(request):
     return render(request, 'user/user_officials.html')
 def user_governance(request):
     return render(request, 'user/user_governance.html')
+
 
 
 

@@ -20,4 +20,32 @@ h4{
     color:red;
   }
   
-  
+  .asterisk label.form-label {
+    font-size: 16px; /* Adjust the font size as needed */
+    /* You can add more styling properties as needed */
+  }
+  /* Style placeholders */
+  .asterisk input::placeholder,
+  .asterisk textarea::placeholder,
+  .asterisk input[type="date"],
+  .asterisk select {
+    color: gray; /* Adjust the color as needed */
+    /* You can add more styling properties as needed */
+    font-size: 16px;
+  }
+  .cancel-button{
+   margin-right: 7%;
+  }
+  .save-button{
+    margin-right: 1%;
+    margin-top: -2.9%;
+   }
+
+  #status {
+    width: 95%; /* Adjust the width as needed */
+    padding: 8px; /* Adjust the padding as needed */
+    margin-left: -200px;
+    margin-top: -7px;
+    
+    /* Add more styling properties as needed */
+}

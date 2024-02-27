@@ -8,8 +8,8 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('SignUp/', views.SignUp, name='SignUp'),
     path('services/', views.services, name='services'),
-    # path('navbar/', views.navbar, name='navbar'),
-    # path('navbar_index/', views.navbar_index, name='navbar_index'),
+    path('navbar/', views.navbar, name='navbar'),
+    path('navbar_index/', views.navbar_index, name='navbar_index'),
     path('profiles/', views.profiles, name='profiles'),
     path('officials/', views.officials, name='officials'),
     path('forms/', views.forms, name='forms'),
@@ -30,8 +30,8 @@ urlpatterns = [
     path('personnel_forms/', views.personnel_forms, name='personnel_forms'),
      path('personnel/', views.personnel, name='personnel'),
     path('add_incident/', views.add_incident, name='add_incident'),
-    
     path('add_clearances/', views.add_clearances, name='add_clearances'),
+    path('terms_conditions_forms/', views.terms_conditions_forms, name='terms_conditions_forms'),
     
  #userside
  

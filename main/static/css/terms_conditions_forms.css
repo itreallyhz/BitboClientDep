@@ -12,7 +12,7 @@
   body {
     overflow-x: hidden;
   }
-  p {
+ p {
     font-size: 16px; /* Change the font size as needed */
     color: black;
 }
@@ -21,4 +21,9 @@
 .text-muted li {
     font-size: 16px; /* Change the font size as needed */
     color: black;
+}
+.button-container{
+    margin-left: 90%;
+    display: flex;
+    gap: 10px; 
 }

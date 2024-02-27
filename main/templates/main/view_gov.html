@@ -15,8 +15,9 @@
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                                 <h4 class="mb-sm-0">Governance and Ordinances</h4>
                                 <div class="page-title-right">
+                                    <div id="whole-content" style="display: none;">
                                     <ol class="breadcrumb m-0">
-                                       
+                                    
                                     </ol>
                                 </div>
     
@@ -31,20 +32,72 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="mb-3">
-                                        <label class="form-label" for="">Title of file<span> *</span></label>
-                                        <input type="text" class="form-control" id="project-title-input" placeholder="Enter project title">
+                                        <div class="asterisk">
+                                        <label class="form-label" for="input">Title of file<span> *</span></label>
+                                        <input type="text" class="form-control" id="title" placeholder="Enter project title" required>
                                     </div>
+                                </div>
     
-                                    <div class="mb-3">
-                                        <label class="form-label" for="">Author<span> *</span></label>
-                                        <input type="text" class="form-control" id="author-input" placeholder="Enter Author">
+                                    <!--<div class="mb-3">
+                                        <div class="asterisk">
+                                        <label class="form-label" for="input">Author<span> *</span></label>
+                                        <input type="text" class="form-control" id="author" placeholder="Enter Author" required>
                                     </div>
+                                -->
+
+                                <div class="asterisk">
+                                    <label for="author" class="form-label">Author <span>*</span></label>
+                                    <select class="form-select" id="author" required >
+                                        <option value="" disabled selected>Select Author</option>
+                                    </select>
+                                </div>
+
                                     <div class="mb-3">
-                                        <label class="form-label">Project Description</label>
-                                            <textarea class="form-control" id="project-description" placeholder="Type here..."></textarea>
-                                       
+                                        <div class="asterisk">
+                                        <label class="form-label" for="input">Project Description</label>
+                                            <textarea class="form-control" id="description" placeholder="Type here..."></textarea>
                                     </div>
+                                </div>
                                 <!-- end card body -->
+                                <p class="text-muted">Add Attached files here.</p>
+                
+                                <form id="fileUploadForm" enctype="multipart/form-data">
+                                    <div class="mb-3">
+                                        <input type="file" id="formFile" name="file">
+                                    </div>
+                                </form>
+                            <!-- Button -->
+                                <div class="card-body">
+                                    <div class="live-preview">
+                                        <div class="cancel-button">
+                                            <!-- cancel button with modals -->
+                                            <button class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".bs-example-modal-center">Cancel</button>
+                                            <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body text-center p-5">
+                                                            <div class="mt-4">
+                                                                <h4 class="mb-3">Are you sure you want to cancel?</h4>
+                                                                <div class="hstack gap-2 justify-content-center">
+                                                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">No</button>
+                                                                    <a href="{% url 'gov_admin' %}" class="btn btn-danger">Yes</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div><!-- /.modal -->
+                                            </div>
+                                        <div class="save-button">
+                                            <button type="button" class="btn btn-success waves-effect waves-light"  id="confirmSubmitBtn">Save</button>
+                                        </div>   
+                                                    <!-- First modal dialog -->
+                                                            
+                                                            <!-- Second modal dialog -->
+                                                           
+                                                        </div><!-- end save button -->
+                                                </div><!-- end live preview -->
+                                            </div><!-- end card body (Start button) -->
                             </div>
                             <!-- end card -->
                             </div>
@@ -54,103 +107,124 @@
                     <!-- end row -->
                 </div>
                 
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title mb-0">Attached files</h5>
-                    </div>
-                    <div class="card-body">
-                        <div>
-                            <p class="text-muted">Add Attached files here.</p>
-                
-                            <form id="fileUploadForm" enctype="multipart/form-data">
-                                <div class="mb-3">
-                                    <input type="file" id="formFile" name="file">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+            
+                            
+                      
                 <!-- end card -->
-                <div class="text-end mb-4">
-                    <button id="saveButton" type="button" class="btn btn-success w-sm" onclick="submitForm()">Save</button>
-                    
-                </div>
-            <!-- Success Modal -->
-                <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="successModalLabel">Success</h5>
-                            </div>
-                            <div class="modal-body">
-                                Successfully Saved!
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- <div class="text-end mb-4">
+                    <button  type="button" class="btn btn-success w-sm" onclick="saveData()">Save</button>
+                </div> -->
+                <!-- start of buttons -->
+                                                   
                 </form>
-    
+      
             </div><!-- container-fluid -->
     </div><!-- square -->
     </div><!--div protection-->
     
     {% block css %}
      
-      <link href="{% static 'css/gov_admin.css' %}" rel="stylesheet" type="text/css" />
-      <style>
-        /* Custom CSS for centering the div - attached file */
-        .center-div {
-            margin-left: 48%;
-        }
-    </style>
+      <link href="{% static 'css/view_gov.css' %}" rel="stylesheet" type="text/css" />
+     
     {% endblock %}
     
     {% block js %}
-        <!-- ckeditor -->
-        <script src="{% static 'libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js' %}"></script>
-     
-        <!-- dropzone js -->
-        <script src="{% static 'libs/dropzone/dropzone-min.js' %}"></script>
-        <!-- project-create init -->
-        <script src="{% static 'js/pages/project-create.init.js' %}"></script>
-     
-        <!-- App js -->
-        <script src="{% static 'js/app.js' %}"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+       <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="{% static 'libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js' %}"></script>
+<script src="{% static 'libs/dropzone/dropzone-min.js' %}"></script>
+<script src="{% static 'js/pages/project-create.init.js' %}"></script>
+<script src="{% static 'js/app.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     
         <script>
-          //ADD ORDINANCE
-    
+         $(document).ready(function () {
+    // Handle the actual form submission in the second modal
+    $("#confirmSubmitBtn").unbind('click').click(function (event) {
+        event.preventDefault();
+
+        // Add class to all required fields for highlighting
+        var isValid = true;
+        $('.asterisk input, .asterisk select, .asterisk textarea').each(function () {
+            var fieldValue = $(this).val();
+            if (fieldValue.trim() === '') {
+                $(this).addClass('is-invalid');
+                isValid = false;
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Personal information fields are required! ",
+                });
+            } else {
+                $(this).removeClass('is-invalid');
+            }
+        });
+
+        if (isValid) {
+            // If all fields are valid, show SweetAlert confirmation modal
+            showConfirmationModal();
+        }
+    });
+
+    // Optional: Add an event listener to remove the red border when the user starts typing
+    $('.asterisk input, .asterisk select.form-select, .asterisk textarea').on('input', function () {
+        if ($(this).val().trim() !== '') {
+            $(this).removeClass('is-invalid');
+        }
+    });
+
+    // Function to show SweetAlert confirmation modal
+    function showConfirmationModal() {
+        Swal.fire({
+            title: "Do you want to save the changes?",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Save",
+            denyButtonText: `Don't save`
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                // Perform form submission or any other action
+                submitForm();
+            } else if (result.isDenied) {
+                Swal.fire("Changes are not saved", "", "info");
+            }
+        });
+    }
+
     // Function to handle form submission
     function submitForm() {
+        var token = localStorage.getItem('token');
+        if (!token) {
+            console.error('No token found');
+            return;
+        }
+
         // Create a FormData object
         var formData = new FormData();
-    
+
         // Append form fields to formData
-        formData.append('title', $('#project-title-input').val());
-        formData.append('author', $('#author-input').val());
-        formData.append('description', $('#project-description').val());
-    
+        formData.append('title', $('#title').val());
+        formData.append('author', $('#author').val());
+        formData.append('description', $('#description').val());
+
         var fileInput = $('#formFile')[0];
-    
+
         // Check if a file is selected
         if (fileInput.files.length > 0) {
             // Append the file to formData with a specified field name
             formData.append('file', fileInput.files[0], fileInput.files[0].name);
         } else {
             console.error("No file selected");
-            return false;;
+            return false;
         }
-    
+
         console.log("Form Data:", formData);
-    
+
         $.ajax({
-            url: 'https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/ordinances/add',
+            url: 'http://127.0.0.1:8000/ordinances/add',
             type: 'POST',
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem('token')
@@ -158,13 +232,13 @@
             data: formData,
             contentType: false,
             processData: false,
-            success: function(response) {
+            success: function (response) {
                 console.log(response);
                 // Show success modal or handle success response
                 $("#successModal").modal("show");
                 // You can redirect to another page or perform additional actions on success
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.error("AJAX Error:", status, error);
                 var responseJSON = xhr.responseJSON;
                 if (responseJSON && responseJSON.detail) {
@@ -172,23 +246,47 @@
                 }
             }
         });
-        
+
         // Prevent the default form submission
         return false;
     }
-          //SECURITY
-             // Check for the token when the page loads
-             document.addEventListener("DOMContentLoaded", function() {
-                 var token = localStorage.getItem('token');
-                 if (token) {
-                     // Show the services content if the token is present
-                     document.getElementById('whole-content').style.display = 'block';
-                 } else {
-                     // Redirect to login if token is not present
-                     window.location.href = "/login";  // Adjust the login page URL if necessary
-                 }
-             });
+});
+
+if ($('#author').children().length === 1) {
+    //GET AUTHOR(Barangay Official) DATA
+    $.ajax({
+        url: 'http://127.0.0.1:8000/barangayofficials/all',
+        type: 'GET',
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem('token')
+        },
+        dataType: 'json',
+        success: function(response){
+            response.data.forEach(function(barangay_official) {
+                var fullName = barangay_official.first_name + ' ' + barangay_official.middle_name + ' ' + barangay_official.last_name;
+                $('#author').append('<option value="' + fullName + '">' + fullName + '</option>');
+            });
+        },
+        error: function (error){
+            console.log('Error fetching data:', error);
+        }
+    });
+}
+
+//SECURITY--------------
+    // Check for the token when the page loads
+    document.addEventListener("DOMContentLoaded", function() {
+         var token = localStorage.getItem('token');
+         if (token) {
+             // Show the services content if the token is present
+             document.getElementById('whole-content').style.display = 'block';
+         } else {
+             // Redirect to login if token is not present
+             window.location.href = "/login";  // Adjust the login page URL if necessary
+         }
+     });
+      
         </script>
-    
+        
     {% endblock %}
     {%  endblock %}

@@ -1,3 +1,4 @@
+<div id="whole-content" style="display: none;">
 {% extends 'main/index.html' %}
 {% load static %}
 {% block content %}
@@ -6,60 +7,67 @@
 
             <div class="container">
                 
-                <form action="">
+                <form method="post">
                     <div class="row">
                     <div class="card">
                         <div class="card-header align-items-center d-flex justify-content-between">
-                            <h4 class="mb-sm-0">Case Incident</h4>
+                            <h4 class="mb-sm-0">Incident and Case Management</h4>
                         </div>
                         
                         <div class="row">
                         <div class="col-lg-6">
                         <div class="asterisk">
-                            <label for="" class="form-label"><br>Case Title<span> *</span></label>
+                            <label for="" class="case_title-label"><br>Case Title<span> *</span></label>
                             <input type="form" class="form-control" id="case_title" placeholder="Enter Case Title">
                         </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="asterisk">
-                            <label for="" class="form-label"></br>Date<span> *</span></label>
+                            <label for="happened" class="form-label"></br>Date Happened<span> *</span></label>
                             <input type="date" class="form-control" id="happened">
                         </div>
                     </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-6"> 
-                        <label class="form-label1" for="des-info-description-input"><br>Case Description</label>
-                        <textarea class="form-control" placeholder="Enter Description" id="description" rows="6"></textarea>
+                            <div class="asterisk">
+                            <div class="optional">
+                        <label class="form-label1" for="case_description"><br>Case Description</label>
+                        <textarea class="form-control" placeholder="Enter Description" id="case_description" rows="6"></textarea>
                        </div>
-                    <div class="col-lg-6"> 
+                       
+                </div>
+                    </div>
+                    <div class="col-lg-6">
                         <div class="asterisk">
-                        <label for="Compliant" class="form-label1"><br>Status<span> *</span></label>
+                        <label for="status" class="form-label1"><br>Status<span> *</span></label>
                         <select class="form-select" id="status">
-                            <option value="" disabled selected>Select Status</option>
-                            <option value="ongoing">Ongoing</option>
-                            <option value="done">Done</option>
-                            <option value="pending">Pending</option>
-                            
+                            <option value=""></option>
+                            <option value="Ongoing">Ongoing</option>
+                            <option value="Done">Done</option>
+                            <option value="Pending">Pending</option>          
                         </select>
                     </div>
-
+                    </div>
+                    </div>
+                    <div class="col-lg-6">
+                    <div class="optional">
                     <label for="formFile" class="form-label"><br>Upload File</label>
                     <input class="form-control" type="file" id="formFile" />
                 </div>
-                
+                </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6"> 
                         <div class="asterisk">
-                        <label for="Compliant" class="form-label1"><br>Name of Complainant<span> *</span></label>
+                        <label for="complainant" class="form-label1"><br>Name of Complainant<span> *</span></label>
                         <input type="form" class="form-control" id="complainant" placeholder="Name of complainant">
                     </div>
                 </div>
 
                     <div class="col-lg-6"> 
                         <div class="asterisk">
-                        <label for="" class="form-label1"><br>Subject to Complaint<span> *</span></label>
+                        <label for="subject_complaint" class="form-label1"><br>Subject to Complaint<span> *</span></label>
                         <input type="form" class="form-control" id="subject_complaint" placeholder="subject to complaint">
                     </div>
                 </div>
@@ -67,14 +75,14 @@
                 <div class="row">
                 <div class="col-lg-6"> 
                     <div class="asterisk">
-                    <label for="" class="form-label1"><br>Name of Witness<span> *</span></label>
+                    <label for="witness" class="form-label1"><br>Name of Witness<span> *</span></label>
                     <input type="form" class="form-control" id="witness" placeholder="Name of Witness">
                 </div>
             </div>
         
                 <div class="col-lg-6"> 
                     <div class="asterisk">
-                    <label for="" class="form-label1"><br>Place<span> *</span></label>
+                    <label for="place" class="form-label1"><br>Place<span> *</span></label>
                     <input type="form" class="form-control" id="place" placeholder="Place">
                 </div>
             </div>
@@ -82,22 +90,22 @@
             <div class="row">
             <div class="col-lg-6"> 
                 <div class="asterisk">
-                <label for="" class="form-label1"><br>Name of Officer<span> *</span></label>
+                <label for="officer" class="form-label1"><br>Name of Officer<span> *</span></label>
                 <input type="form" class="form-control" id="officer" placeholder="Name of Officer in charge">
             </div>
         </div>
         </div>
                         <div class="mt-4">
                             <div class="hstack gap-2 justify-content-end">
-                                <button class="btn btn-primary waves-effect waves-light cancel-button" data-bs-toggle="modal" data-bs-target=".bs-example-modal-center">Cancel</button>
-                                <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                <button type="button" class="btn btn-primary waves-effect waves-light cancel-button" data-bs-toggle="modal" data-bs-target="#cancelmodal">Cancel</button>
+                                <div class="modal fade" id="cancelmodal" aria-hidden="true"  tabindex="-1">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-body text-center p-5">
                                                 <div class="mt-4">
                                                     <h4 class="mb-3">Are you sure you want to cancel?</h4>
                                                     <div class="hstack gap-2 justify-content-center">
-                                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">No</button>
+                                                        <button  class="btn btn-light"  data-bs-target="#cancelmodal" data-bs-toggle="modal"  data-bs-dismiss="modal">No</button>
                                                         <a href="{% url 'incident_logs' %}" class="btn btn-danger">Yes</a>
                                                     </div>
                                                 </div>
@@ -105,54 +113,17 @@
                                         </div><!-- /.modal-content -->
                                     </div><!-- /.modal-dialog -->
                                 </div><!-- /.modal -->
-                                <button type="button" class="btn btn-success waves-effect waves-light save-button" data-bs-toggle="modal" data-bs-target="#firstmodal">Save</button>
-                                <!-- First modal dialog -->
-                                        <div class="modal fade" id="firstmodal" aria-hidden="true" tabindex="-1">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-body text-center p-5">
-                                                        <lord-icon src="https://cdn.lordicon.com/tdrtiskw.json" trigger="loop" colors="primary:#f7b84b,secondary:#405189" style="width:130px;height:130px">
-                                                        </lord-icon>
-                                                        <div class="mt-4 pt-4">
-                                                            <h4>Are you sure you want to save it?</h4>
-                                                         <!-- Toogle to second dialog -->
-                                                         <button class="btn btn-light" data-bs-target="#firstmodal" data-bs-toggle="modal" data-bs-dismiss="modal">Cancel</button>
-                                                         <a href ="{% url 'add_incident' %}"class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#secondmodal" onclick="submitForm()">Yes</a>
-                                                         <!-- <button class="btn btn-warning" data-bs-target="#secondmodal" data-bs-toggle="modal" data-bs-dismiss="modal" onclick="submitForm()">Yes</button> -->
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Second modal dialog -->
-                                        <div class="modal fade" id="secondmodal" aria-hidden="true" tabindex="-1">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-body text-center p-5">
-                                                        <lord-icon src="https://cdn.lordicon.com/zpxybbhl.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:150px;height:150px">
-                                                        </lord-icon>
-                                                        <div class="mt-4 pt-3">
-                                                            <h4 class="mb-3">Your forms are succesfully saved!</h4>
-                                                            <div class="hstack gap-2 justify-content-center">
-                                                                <a href="{% url 'add_incident' %}"  class="btn btn-light">Close</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                        </div>
-                                     </div>
-                             </div><!-- end save button -->
-                        </div><!-- end button container -->
-                            </div>
+                                <button type="button" class="btn btn-success waves-effect waves-light"  id="confirmSubmitBtn">Save</button>
+                                </div>
+                            </div><!-- end button container -->
                         </div>
-                        <br>
-               
+                    </div>
+                <br>
             </div>
-            </div>
+        </div>
         </form>
-            </div>
-            
-     
-       
+    </div>
+    </div> <!--div protection-->
 <!--end add board modal-->
 
 {% block css %}
@@ -160,11 +131,7 @@
 {% endblock %}
 
 {% block js %}
-
-
-
 <script src="{% static 'libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js' %}"></script>
- 
  <!-- dropzone js -->
  <script src="{% static 'libs/dropzone/dropzone-min.js' %}"></script>
  <!-- project-create init -->
@@ -174,20 +141,25 @@
  <script src="{% static 'js/app.js' %}"></script>
  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
- <script>  
+ <script>
+ 
     // Function to handle form submission
     function submitForm() {
+        //Retrieve token
+
+        var token = localStorage.getItem('token');
         // Create a FormData object
         var formData = new FormData();
     
         // Append form fields to formData
         formData.append('case_title', $('#case_title').val());
-        formData.append('case_description', $('#description').val());
+        formData.append('case_description', $('#case_description').val());
         formData.append('complainant', $('#complainant').val());
         formData.append('witness', $('#witness').val());
         formData.append('officer', $('#officer').val());
-        formData.append('subject_complaint', $('#subject_complaint ').val());
+        formData.append('subject_complaint', $('#subject_complaint').val());
         formData.append('place', $('#place').val());
         formData.append('happened', $('#happened ').val());
         formData.append('status', $('#status').val());
@@ -202,10 +174,9 @@
             return;
         }
     
-        console.log("Form Data:", formData);
     
         $.ajax({
-            url: 'https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/incidents/add',
+            url: 'http://127.0.0.1:8000/incidents/add',
             type: 'POST',
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem('token')
@@ -221,26 +192,79 @@
                 var responseJSON = xhr.responseJSON;
                 if (responseJSON && responseJSON.detail) {
                     console.error("Detailed Error:", responseJSON.detail);
-                }
+            }
+        }
+        });
+    }  
+  $(document).ready(function () {
+    $("#confirmSubmitBtn").unbind('click').click(function (event) {
+        event.preventDefault();
+        var isValid = true;
+        $('.asterisk input, .asterisk select, .asterisk textarea').each(function () { // Modified selector to target all input, select, and textarea elements within elements with class .asterisk
+            var fieldValue = $(this).val();
+            if (!fieldValue || fieldValue.trim() === '') { // Check if no value is entered or if the entered value is empty
+                $(this).addClass('is-invalid');
+                isValid = false;
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Incident fields are required! ",
+                });
+            } else {
+                $(this).removeClass('is-invalid');
             }
         });
-    }
+
+        if (isValid) {
+            confirmSave();
+        }
+    });
+
+    // Optional: Add an event listener to remove the red border when the user starts typing
+    $('.asterisk input, .asterisk select.form-select, .asterisk textarea').on('input', function () {
+        if ($(this).val().trim() !== '') {
+            $(this).removeClass('is-invalid');
+        }
+    });
     
-     //SECURITY
-         // Check for the token when the page loads
-         document.addEventListener("DOMContentLoaded", function() {
-             var token = localStorage.getItem('token');
-             if (token) {
-                 // Show the services content if the token is present
-                 document.getElementById('whole-content').style.display = 'block';
-             } else {
-                 // Redirect to login if token is not present
-                 window.location.href = "/login";  // Adjust the login page URL if necessary
-             }
-         });
+  
+});
+
+//SAVE MODAL
+function confirmSave() {
+                Swal.fire({
+                    title: "Do you want to save the changes?",
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: "Save",
+                    denyButtonText: `Don't save`
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // SweetAlert confirmation
+                        Swal.fire("Saved!", "", "success").then(() => {
+                            // Trigger the form submission when "Save" is clicked
+                            submitForm();
+                        });
+                    } else if (result.isDenied) {
+                        Swal.fire("Changes are not saved", "", "info");
+                        // Handle any additional actions or don't open the first modal
+                    }
+                });
+            }
+    
+ //SECURITY--------------
+    // Check for the token when the page loads
+    document.addEventListener("DOMContentLoaded", function() {
+         var token = localStorage.getItem('token');
+         if (token) {
+             // Show the services content if the token is present
+             document.getElementById('whole-content').style.display = 'block';
+         } else {
+             // Redirect to login if token is not present
+             window.location.href = "/login";  // Adjust the login page URL if necessary
+         }
+     });
     </script>
 
 {% endblock %}
-
-
 {% endblock %}

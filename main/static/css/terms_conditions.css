@@ -12,6 +12,13 @@
   body {
     overflow-x: hidden;
   }
-  .asterisk span{
-    color:red;
-  }
+  p {
+    font-size: 16px; /* Change the font size as needed */
+    color: black;
+}
+
+.text-muted ul,
+.text-muted li {
+    font-size: 16px; /* Change the font size as needed */
+    color: black;
+}

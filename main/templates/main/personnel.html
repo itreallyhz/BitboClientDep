@@ -3,13 +3,12 @@
 {% load static %}
 {% block content %}
 
-
 <div class="container-fluid">
     <div class="row">
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0">Resident Information</h4>
+                    <h4 class="mb-sm-0">Personnel Information</h4>
                 </div>
             </div>
         </div>
@@ -98,9 +97,9 @@
                                <!-- Image Container -->
                                <div class="col-12 text-center">
                                 <div class="square-container">
-                                    <img src="" alt="Preview Image" id="previewImage" class="img-fluid rounded" style="max-width: 100%; max-height: 100%;">
+                                    <img src="" alt="Preview Image" id="e_photo_path" class="img-fluid rounded" style="max-width: 100%; max-height: 100%;">
                                 </div> 
-                                <input type="file" id="photo_path">
+                                <input type="file" id="e_photo_path">
                    
                         </div>
                         <div class="col-xxl-3 col-md-6">
@@ -142,18 +141,18 @@
       
                                 <div class="col-xxl-3 col-md-6">
                                     <div class="asterisk">
-                                        <label for="exampleInputdate" class="form-label1">Birthday <span>*</span></label>
-                                        <input type="date" class="form-control" id="birthday">
+                                        <label for="e_birthday" class="form-label1">Birthday <span>*</span></label>
+                                        <input type="date" class="form-control" id="e_birthday">
                                     </div>
                                 </div>
                                
                               
-                                <!--Phone number-->
+                                <!--Contact number-->
                                 <div class="col-xxl-3 col-md-6">
                                     <div class="asterisk">
-                                        <label for="phone_no" class="form-label1">Phone Number <span>*</span></label>
+                                        <label for="contact_no" class="form-label1">Contact Number <span>*</span></label>
                                         <div class="form-icon right">
-                                            <input type="text" class="form-control form-control-icon" id="phone_no" placeholder="09*******" >
+                                            <input type="text" class="form-control form-control-icon" id="contact_no" placeholder="09*******" >
                                             <i class="ri-phone-line"></i>
                                     </div>
                                     </div>
@@ -172,7 +171,7 @@
                                 <div class="col-xxl-3 col-md-6">
                                     <div class="asterisk">
                                     <label for="Occupation" class="form-label">Position <span>*</span></label>
-                                    <select class="form-select" id="position" required onchange="showAdditionalFieldsPosition()">
+                                    <select class="form-select" id="position" required>
                                         <option value="" disabled selected>Select Position</option>
                                         <option value="Secretary">Secretary</option>
                                         <option value="Treasurer">Treasurer</option>
@@ -181,24 +180,10 @@
                                     </select>
                                     </div>
                                 </div>
-                                <!-- statrt term -->
-                                <div class="col-xxl-3 col-md-6">
-                                    <div class="asterisk">
-                                        <label for="exampleInputdate" class="form-label1">Start Term <span>*</span></label>
-                                        <input type="date" class="form-control" id="birthday">
-                                    </div>
-                                </div>
-                                <!-- end term -->
-                                <div class="col-xxl-3 col-md-6">
-                                    <div class="asterisk">
-                                        <label for="exampleInputdate" class="form-label1">End Term <span>*</span></label>
-                                        <input type="date" class="form-control" id="birthday">
-                                    </div>
-                                </div>
                             <div class="col-lg-12">
                                 <div class="hstack gap-2 justify-content-end">
                                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Edit</button>
                                 </div>
                             </div><!--end col-->
                         </div><!--end row-->
@@ -207,298 +192,25 @@
             </div>
         </div>
         <!-- end of modal edit -->
-                          
-<!--View Modal-->             
 
-<div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-modal="true">
-    <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="viewModalLabel">Personnel's Information</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form action="javascript:void(0);">
-                <div class="row g-4">
-                        <div class="col-xxl-3 col-md-6">
-                            <div class="asterisk">
-                                <label for="Name" class="form-label1">Name</label>
-                                
-                            </div>
-                        </div>
-                        <div class="col-xxl-3 col-md-6">
-                            <div class="asterisk">
-                                <label for="age" class="form-label1">Age</label>
-    
-                            </div>
-                        </div>
-                        <div class="col-xxl-3 col-md-6">
-                            <div class="asterisk">
-                                <label for="exampleInputdate" class="form-label1">Birthday</label>
-    
-                            </div>
-                        </div>
-                         <!-- Birth order -->
-                         <div class="col-xxl-3 col-md-6">
-                            <div class="asterisk">
-                            <label for="birth_order" class="form-label1">Birth Order</label>
-                            
-                            </div>
-                        </div>
-                        <div class="col-xxl-3 col-md-6">
-                            <div class="asterisk">
-                                <label for="Birthplace" class="form-label1">Birthplace</label>
-    
-                            </div>
-                        </div>
-                        <div class="col-xxl-3 col-md-6">
-                            <div class="asterisk">
-                                <label for="blood_type" class="form-label1">Blood Type </label>
-    
-                            </div>
-                        </div>
-                        <!--end col-->
-                        <div class="col-xxl-3 col-md-6">
-                            <div class="asterisk">
-                                <label for="gender" class="form-label1">Gender</label>
-                              
-                            </div>
-                        </div>
-                        <!--end col-->
-                        <div class="col-xxl-3 col-md-6">
-                            <div class="asterisk">
-                            <label for="maritalStatus" class="form-label1">Civil Status</label>
-                            
-                        </div>
-                        </div>
-                        <!-- Address -->
-                        <div class="col-xxl-3 col-md-6">
-                            <div class="asterisk">
-                                <label for="house_no" class="form-label1">Address </label>
-    
-                            </div>
-                        </div>
-                        
-                        <!--Phone number-->
-                        <div class="col-xxl-3 col-md-6">
-                            <div class="asterisk">
-                                <label for="phone_no" class="form-label1">Phone Number</label>
-                                <div class="form-icon right">
-                                   
-                            </div>
-                            </div>
-                        </div>
-                        <!--email-->
-                        <div class="col-xxl-3 col-md-6">
-                            <div class="asterisk">
-                                <label for="email" class="form-label1">Email </label>
-                                <div class="form-icon right">
-    
-                                </div>
-                            </div>
-                        </div>
-                        <!--Occupation-->
-                        <div class="col-xxl-3 col-md-6">
-                            <div class="asterisk">
-                            <label for="position" class="form-label1">Position</label>
-                           
-                            </div>
-                        </div>
-                       <!-- employed-->
-                        <div id="additionalFieldsEmployed" style="display: none;">
-                            <div class="row">
-                                <div class="col-xxl-3 col-md-6 offset-md-3 offset-xxl-3">
-                                    <label for="educationalattainment" class="form-label1">Educational Attainment </label>
-    
-                                </div>
-    
-                             </div>
-                             </div>
-                        <!-- indigenous -->
-                        <div class="col-xxl-3 col-md-6">
-                            <div class="asterisk">
-                            <label for="indigenous" class="form-label1">Is Indigenous?</label>
-                           
-                            </div>
-                        </div>
-                         <!-- disability -->
-                         <div class="col-xxl-3 col-md-6">
-                            <div class="asterisk">
-                            <label for="disability" class="form-label1">Is Disability?</label>
-                          
-                            </div>
-                        </div>
-                     
-                         <!-- Voter -->
-                        <div class="col-xxl-3 col-md-6">
-                            <div class="asterisk">
-                            <label for="voter" class="form-label1">Is Registered Voter?</label>
-                            
-                            </div>
-                        </div>
-                        <div id="RegisteredYes" style="display: none;">
-                            <div class="row ">
-                                <div class="col-xxl-3 col-md-6">
-                                    <div class="asterisk">
-                                    <label for="voting_precint" class="form-label1">Voting Precint</label>
-                                   
-                                </div>
-                                </div>
-                            </div>
-                         </div>
-                         <!-- Multiple Files Input Example -->
-                         <div class="col-xxl-3 col-md-6">
-                            <div class="asterisk">
-                            <label for="formFileMultiple" class="form-label1">Valid ID </label>
-    
-                             </div>
-                        </div>
-    
-                
-                </div>
-                    <!-- family bg -->
-                                <div class="col-lg-12">
-                                    <div class="card">
-                                        <div class="card-header align-items-center d-flex justify-content-between">
-                                            <h4 class="mb-sm-0">Mother's Information</h4>
-                                        </div>
-                                <!-- end card header -->
-                                        <div class="card-body">
-                                            <div class="live-preview">
-                                                <div class="row gy-4">
-                                                    <div class="col-xxl-3 col-md-6">
-                                                        <div class="asterisk">
-                                                            <label for="m_first_name" class="form-label1"> Mother's Name </label>
-    
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div class="asterisk">
-                                                        <label for="Address" class="form-label1">Address</label>
-    
-                                                    </div>
-                                                </div>
-                                            <div class="col-xxl-3 col-md-6">
-                                                <div class="asterisk">
-                                                    <label for="exampleInputdate" class="form-label1">Birthday</label>
-    
-                                                </div>
-                                            </div>
-                                            <div class="col-xxl-3 col-md-6">
-                                                <div class="asterisk">
-                                                    <label for="gender" class="form-label1">Gender</label>
-                                                    
-                                                </div>
-                                            </div>
-                                            <div class="col-xxl-3 col-md-6">
-                                                <div class="asterisk">
-                                                    <label for="phonenum" class="form-label1">Phone Number </label>
-                                                    <div class="form-icon right">
-                                                        
-                                                    </div>
-                                                 </div>
-                                                </div>
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div class="asterisk">
-                                                        <label for="email" class="form-label1">Email </label>
-                                                        <div class="form-icon right">
-                                                           
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            
-                                                
-                                        </div>
-                                        </div>
-                                  </div>
-                                 </div>
-                                 </div>
-    
-                        <!-- Father's Information -->
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <div class="card-header align-items-center d-flex justify-content-between">
-                                    <h4 class="mb-sm-0">Father's Information</h4>
-                                </div>
-                        <!-- end card header -->
-                                <div class="card-body">
-                                    <div class="live-preview">
-                                        <div class="row gy-4">
-                                            <div class="col-xxl-3 col-md-6">
-                                                <div class="asterisk">
-                                                    <label for="m_first_name" class="form-label1"> Mother's Name </label>
-    
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl-3 col-md-6">
-                                            <div class="asterisk">
-                                                <label for="Address" class="form-label1">Address</label>
-    
-                                            </div>
-                                        </div>
-                                    <div class="col-xxl-3 col-md-6">
-                                        <div class="asterisk">
-                                            <label for="exampleInputdate" class="form-label1">Birthday</label>
-    
-                                        </div>
-                                    </div>
-                                    <div class="col-xxl-3 col-md-6">
-                                        <div class="asterisk">
-                                            <label for="gender" class="form-label1">Gender</label>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="col-xxl-3 col-md-6">
-                                        <div class="asterisk">
-                                            <label for="phonenum" class="form-label1">Phone Number </label>
-                                            <div class="form-icon right">
-                                                
-                                            </div>
-                                         </div>
-                                        </div>
-                                        <div class="col-xxl-3 col-md-6">
-                                            <div class="asterisk">
-                                                <label for="email" class="form-label1">Email </label>
-                                                <div class="form-icon right">
-                                                   
-                                                </div>
-                                            </div>
-                                        </div>
-                                    
-                                        
-                                </div>
-                                </div>
-                          </div>
-                         </div>
-                         </div>
-    
-                  
-                </div><!--end row-->
-            
-        </div>
-    </div>
-    </div>
-    <!-- end of modal view -->
-    </div>
-</div>
-</div>
 </div> <!--div protection-->
 <!-- container-fluid -->
+
 
 {% block css %}
 <link href="{% static 'css/profiles.css' %}" rel="stylesheet" type="text/css" />
 {% endblock %}
 
 {% block js %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" ></script>
 
 <script>
     $(document).ready(function () {
         // Function to load personnel data with pagination
         function loadPersonnels(page = 1, searchTerm = "") {
             $.ajax({
-                url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/personnels/getp?page=" + page + "&limit=10&search=" + encodeURIComponent(searchTerm),
+                url: "http://127.0.0.1:8000/personnels/getp?page=" + page + "&limit=10&search=" + encodeURIComponent(searchTerm),
                 type: "GET",
                 headers: {
                     "Authorization": "Bearer " + localStorage.getItem('token')
@@ -515,10 +227,10 @@
                                 '<td>' + personnel.first_name + ' ' + personnel.middle_name + ' ' + personnel.last_name + ' ' + personnel.suffix +'</td>' +
                                 '<td>' + personnel.position + '</td>' +
                                 '<td>' +
-                                '<button class="btn btn-soft-secondary edit-btn" data-personnelid="' + personnel.id + '" type="button" data-bs-toggle="modal" data-bs-target="#editModal">' +
-                                '<a href="#" class="dropdown-item"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>' +
-                                '</button>' +
-                                '<button class="btn btn-soft-success" data-personnelid="' + personnel.id + ' " type="button" data-bs-toggle="modal" aria-expanded="false" data-bs-target="#viewModal">' +
+                            //'<button class="btn btn-soft-secondary edit-btn" data-personnelid="' + personnel.id + '" type="button" data-bs-toggle="modal" data-bs-target="#editModal">' +
+                            //    '<a href="#" class="dropdown-item"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>' +
+                            //    '</button>' +
+                                '<button class="btn btn-soft-success btn-spacing" data-personnelid="' + personnel.id + ' " type="button" data-bs-toggle="modal" aria-expanded="false" data-bs-target="#viewModal">' +
                                 '<a href="#" class="dropdown-item"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a>' +
                                 '</button>' +
                                 '<button class="btn btn-soft-primary delete-btn" data-personnelid="' + personnel.id + '" type="button" aria-expanded="false">' +
@@ -586,26 +298,43 @@
         }
    // DELETE MODAL POP UP ---------------------------------------------------------------
    $(document).on("click", ".delete-btn", function () {
-            var personnelId = $(this).data("personnelid");
-            // Display a confirmation prompt before proceeding with deletion
-            if (confirm("Are you sure you want to delete this personnel?")) {
-                // User clicked OK in the confirmation prompt
-                // Call the function to delete the personnel with the given ID
-                deletePersonnel(personnelId);
-             }
-        });
+    var personnelId = $(this).data("personnelid");
+
+    // Display a confirmation prompt using SweetAlert
+    Swal.fire({
+        title: "Are you sure you want to delete this personnel?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // User clicked OK in the confirmation prompt
+            // Call the function to delete the personnel with the given ID
+            deletePersonnel(personnelId);
+        }
+    });
+});
 
     // DELETE RESIDENT
         function deletePersonnel(personnelId) {
             $.ajax({
-                 url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/personnels/" + personnelId,
+                 url: "http://127.0.0.1:8000/personnels/" + personnelId,
                 type: "DELETE",
                 headers: {
                     "Authorization": "Bearer " + localStorage.getItem('token')
                 },
                 success: function (data) {
+                    // Using SweetAlert for success message
+      Swal.fire({
+        title: "Deleted!",
+        text: "Your file has been deleted.",
+        icon: "success"
+      }).then(() => {
                     // Reload the personnels after successful deletion
                     loadPersonnels();
+                });
                 },
                  error: function () {
                     // Handle error case
@@ -615,29 +344,29 @@
         }
 
     // FOR EDIT MODAL Attach a click event handler to the edit buttons--------------------------------------
-        $(document).on("click", ".edit-btn", function () {
+        $(document).on("click", ".btn-spacing", function () {
             var personnelId = $(this).data("personnelid");
 
             // Set the personnel ID to the modal data attribute
             $('#editModal').data('personnel-id', personnelId);
 
             // Call the function to get specific personnel data by ID
-            getPersonnel(personnelId);
+            getPersonnelforEdit(personnelId);
         });
 
 
     // Function to get specific personnel data by ID
-        function getPersonnel(personnelId) {
+        function getPersonnelforEdit(personnelId) {
             console.log('Getting personnel with ID:', personnelId);
             $.ajax({
-                url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/personnels/" + personnelId,
+                url: "http://127.0.0.1:8000/personnels/" + personnelId,
                 type: "GET",
                 headers: {
                     "Authorization": "Bearer " + localStorage.getItem('token')
                 },
                 success: function (data) {
                     // Populate the form fields with the personnel data
-                    populateFormWithData(data.data);
+                    showEditModal(data.data);
 
                     // Open the modal for editing
                     $('#editModal').modal('show');
@@ -650,13 +379,18 @@
         }
 
         // Function to populate form fields with personnel data
-        function populateFormWithData(personnelData) {
+        function showEditModal(personnelData) {
             // Assuming you have form fields with corresponding IDs, update their values
             $('#first_name').val(personnelData.first_name);
             $('#middle_name').val(personnelData.middle_name);
             $('#last_name').val(personnelData.last_name);
+            $('#suffix').val(personnelData.suffix);
+            $('#e_birthday').val(personnelData.birthday);
+            $('#email').val(personnelData.email);
+            $('#contact_no').val(personnelData.contact_no);
+            $('#position').val(personnelData.position);
             // Repeat this for other form fields
-            $('#previewImage').attr('src', 'data:image/jpeg;base64,' + personnelData.photo_path);
+            $('#e_photo_path').attr('src', 'data:image/jpeg;base64,' + personnelData.photo_path);
         }
 
         // Attach a submit event handler to the form
@@ -685,7 +419,7 @@ if (isConfirmed) {
             console.log('Sending data to server:', personnelData);
 
             $.ajax({
-                url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/personnels/" + personnelId,
+                url: "http://127.0.0.1:8000/personnels/" + personnelId,
                 type: "PUT",
                 contentType: "application/json",
                 data: JSON.stringify(personnelData),
@@ -710,7 +444,7 @@ if (isConfirmed) {
                 first_name: $('#first_name').val(),
                 middle_name: $('#middle_name').val(),
                 last_name: $('#last_name').val(),
-                photo_path: $('#previewImage')
+                photo_path: $('#photo_path')
                 // Add other form fields here
             };
 
@@ -726,43 +460,7 @@ if (isConfirmed) {
         }
     });
 
-// VIEW MODAL----------------------------------------------------------------------------------
-// Attach a click event handler to the view button
-$(document).on("click", ".view-btn", function () {
-    var personnelId = $(this).data("personnelid");
 
-    // Call the function to get specific personnel data by ID
-    getPersonnelForView(personnelId);
-});
-
-// Function to get specific personnel data by ID for the view modal
-function getPersonnelForView(personnelId) {
-    console.log('Getting personnel with ID for view:', personnelId);
-    $.ajax({
-        url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/personnels/" + personnelId,
-        type: "GET",
-        headers: {
-            "Authorization": "Bearer " + localStorage.getItem('token')
-        },
-        success: function (data) {
-            // Populate the "Name" text in the view modal with personnel data
-            updateViewModalName(data.data);
-            // Open the view modal
-            $('#viewModal').modal('show');
-        },
-        error: function (xhr, textStatus, errorThrown) {
-            // Handle error case
-            console.error('Error fetching personnel data for view:', textStatus, errorThrown);
-        }
-    });
-}
-
-// Function to update "Name" text in the view modal
-function updateViewModalName(personnelData) {
-    // Assuming you have an element with an ID for "Name" text in the view modal
-    $('#viewModalName').text(personnelData.first_name + ' ' + personnel.middle_name + ' ' + personnelData.last_name);
-    // You might want to add additional information here if needed
-}
 
 
 //SECURITY------------------------

@@ -1,476 +1,525 @@
-
-<div id="whole-content" style="display: none;">
-    {% extends 'main/index.html' %}
-    {% load static %}
-    {% block content %}
-            <!-- ============================================================== -->
-            <!-- Start right Content here -->
-            <!-- ============================================================== -->
-            <div class="square">
-             <div class="container-fluid">
-                        <div class="row justify-content-start" >
-                            <div class="col-lg-12">
-                                <div class="card">
-                                    <div class="card-header align-items-center d-flex justify-content-between">
-                                        <h4 class="mb-sm-0">Personal Information</h4>
-                                    </div>
-                                    <!-- end card header -->
-                                    <form action="{% url 'forms' %}" method="post">
-                                    <div class="card-body">
-                                        <div class="live-preview">
-                                                <div class="row gy-4">
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div class="asterisk">
-                                                        <label for="firstname" class="form-label">First Name <span>*</span></label>
-                                                        <input type="form" class="form-control" id="first_name" placeholder="First Name">
-                                                    </div>
-                                                </div>
-                                                <!--end col-->
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div class="asterisk">
-                                                        <label for="labelInput" class="form-label">Middle Name</label>
-                                                        <input type="form" class="form-control" id="middle_name" placeholder="Middle Name" required>
-                                                    </div>
-                                                </div>
-                                                <!--end col-->
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div class="asterisk"> 
-                                                        <label for="lastname" class="form-label">Last Name <span>*</span></label>
-                                                        <input type="form" class="form-control" id="last_name" placeholder="Last Name" required>
-                                                    </div>
-                                                </div>
-                                                <!--end col-->
-                                                <div class="col-xxl-3 col-md-6">
-                                                   <div class="asterisk">
-                                                            <label for="Suffix" class="form-label">Suffix</label>
-                                                            <div class="input-group">
-                                                                <select class="form-select" id="suffix" required>
-                                                                    <option value="" disabled selected>Select a suffix</option>
-                                                                    <option value="Sr.">Sr.</option>
-                                                                    <option value="Jr.">Jr.</option>
-                                                                    <option value="I">I</option>
-                                                                    <option value="II">II</option>
-                                                                    <option value="III">III</option>
-                                                                </select>
-                                                            </div>
-                                                            </div>
-                                                        </div>
-                                                <!--end col-->
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div class="asterisk">
-                                                        <label for="age" class="form-label">Age <span>*</span></label>
-                                                        <input type="text" class="form-control" id="age" value="" placeholder="Age" required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div class="asterisk">
-                                                        <label for="exampleInputdate" class="form-label">Birthday <span>*</span></label>
-                                                        <input type="date" class="form-control" id="birthday" required>
-                                                    </div>
-                                                </div>
-                                                 <!-- Birth order -->
-                                                 <div class="col-xxl-3 col-md-6">
-                                                    <div class="asterisk">
-                                                    <label for="birth_order" class="form-label">Birth Order <span>*</span></label>
-                                                    <select class="form-select" id="birth_order">
-                                                        <option value="" disabled selected>Select birth order</option>
-                                                        <option value="Firstborn">First born</option>
-                                                        <option value="Secondborn">Second born</option>
-                                                        <option value="Middle Child">Middle Child</option>
-                                                        <option value="Youngest Child">Youngest Child</option>
-                                                        <option value="Only Child">Only Child</option>
-                                                    </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div class="asterisk">
-                                                        <label for="Birthplace" class="form-label">Birthplace <span>*</span></label>
-                                                        <input type="text" class="form-control" id="birthplace" placeholder="Birth Place" required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div class="asterisk">
-                                                        <label for="blood_type" class="form-label">Blood Type <span>*</span></label>
-                                                        <input type="text" class="form-control" id="blood_type" required>
-                                                    </div>
-                                                </div>
-                                                <!--end col-->
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div class="asterisk">
-                                                        <label for="gender" class="form-label">Gender <span>*</span></label>
-                                                        <select class="form-select" id="gender" required>
-                                                            <option value="" disabled selected>Select gender</option>
-                                                            <option value="male">Male</option>
-                                                            <option value="female">Female</option>
-                                                            <option value="other">Other</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <!--end col-->
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div class="asterisk">
-                                                    <label for="maritalStatus" class="form-label">Civil Status <span>*</span></label>
-                                                    <select class="form-select" id="civil_status" required onchange="showAdditionalFields()">
-                                                        <option value="" disabled selected>Select marital status</option>
-                                                        <option value="single">Single</option>
-                                                        <option value="married">Married</option>
-                                                        <option value="widowed">Widowed</option>
-                                                    </select>
-                                                </div>
-                                                </div>
-                                               <!-- married -->
-                                                <!-- <div id="additionalFieldsMarried" style="display: none;">
-                                                    <div class="row justify-content-end">
-                                                        <div class="col-xxl-3 col-md-6 offset-md-6 offset-xxl-6">
-                                                            <label for="spouseName" class="form-label">Spouse Name</label>
-                                                            <input type="text" id="spouseName" class="form-control" required>
-                                                        </div>
-    
-                                                        <div class="col-xxl-3 col-md-6 offset-md-6 offset-xxl-6">
-                                                            <label for="numChildren" class="form-label">Number of Children</label>
-                                                            <input type="number" id="numChildren" class="form-control" required>
-                                                        </div>
-    
-                                                        <div class="col-xxl-3 col-md-6 offset-md-6 offset-xxl-6">
-                                                            <label for="childrenNames" class="form-label">Names of Children</label>
-                                                            <input type="text" id="childrenNames" class="form-control" required>
-                                                        </div>
-                                                    </div>
-                                                </div> -->
-                                                <!-- widowed -->
-                                                <!-- <div id="additionalFieldsWidowed" style="display: none;">
-                                                    <div class="row justify-content-end">
-                                                        <div class="col-xxl-3 col-md-6 offset-md-6 offset-xxl-6">
-                                                            <label for="spouseName" class="form-label">Spouse Name</label>
-                                                            <input type="text" id="spouseName" class="form-control" required>
-                                                        </div>
-                                                        <div class="col-xxl-3 col-md-6 offset-md-6 offset-xxl-6">
-                                                            <label for="causeOfDeath" class="form-label">Cause of Death</label>
-                                                            <input type="text" id="causeOfDeath" class="form-control" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <script src="{% static 'js/civilstatus.js' %}"></script> -->
-                                                <!-- Address -->
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div class="asterisk">
-                                                        <label for="house_no" class="form-label">House No/Blk <span>*</span></label>
-                                                        <input type="text" class="form-control" id="house_no" placeholder="House No/Blk" required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div class="asterisk">
-                                                        <label for="street" class="form-label">Street<span>*</span></label>
-                                                        <input type="text" class="form-control" id="street" placeholder="Street" required>
-                                                    </div>
-                                                </div>
-                                             <!-- Region-->
-                                             <!-- <div class="col-xxl-3 col-md-6">
-                                                <div class="asterisk">
-                                                    <label for="Address" class="form-label">Region <span>*</span></label>
-                                                    <select class="form-select" id="Region" required onchange="">
-                                                        <option value="" disabled selected>Select Region</option>
-                                                        <option value="">Region 1</option>
-                                                        <option value="">Region 2</option>
-                                                        <option value="">Region 3</option>
-                                                    </select>
-                                                </div>
-                                            </div> -->
-                                            <!--Province-->
-                                            <!-- <div class="col-xxl-3 col-md-6">
-                                                <div class="asterisk">
-                                                <label for="Province" class="form-label">Province <span>*</span></label>
-                                                <select class="form-select" id="Province" required onchange="">
-                                                    <option value="" disabled selected>Select Province</option>
-                                                    <option value="">province</option>
-                                                    <option value=""></option>
-                                                    <option value=""></option>
-                                                    <option value=""></option>
-                                                </select>
-                                                </div>
-                                            </div> -->
-                                             <!--District-->
-                                               <!-- <div class="col-xxl-3 col-md-6">
-                                                <div class="asterisk">
-                                                <label for="District" class="form-label">District<span>*</span></label>
-                                                <select class="form-select" id="District" required onchange="">
-                                                    <option value="" disabled selected>Select District</option>
-                                                    <option value="">District 1</option>
-                                                    <option value=""></option>
-                                                    <option value=""></option>
-                                                    <option value=""></option>
-                                                </select>
-                                                </div>
-                                            </div> -->
-                                             <!--Barangay-->
-                                             <!-- <div class="col-xxl-3 col-md-6">
-                                                <div class="asterisk">
-                                                <label for="Barangay" class="form-label">Barangay<span>*</span></label>
-                                                <select class="form-select" id="District" required onchange="">
-                                                    <option value="" disabled selected>Select Barangay</option>
-                                                    <option value="">Barangay</option>
-                                                    <option value=""></option>
-                                                    <option value=""></option>
-                                                    <option value=""></option>
-                                                </select>
-                                                </div>
-                                            </div> -->
-                                            <!--Street-->
-                                            <!-- <div class="col-xxl-3 col-md-6">
-                                                <div class="asterisk">
-                                                    <label for="strt" class="form-label">Street <span>*</span></label>
-                                                        <input type="text" class="form-control form-control-icon" id="strt" placeholder="Street" required>
-                                                </div>
-                                            </div> -->
-                                                <!--Phone number-->
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div class="asterisk">
-                                                        <label for="phone_no" class="form-label">Phone Number <span>*</span></label>
-                                                        <div class="form-icon right">
-                                                            <input type="email" class="form-control form-control-icon" id="phone_no" placeholder="09*******" required>
-                                                            <i class="ri-phone-line"></i>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                                <!--email-->
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div class="asterisk">
-                                                        <label for="email" class="form-label">Email <span>*</span></label>
-                                                        <div class="form-icon right">
-                                                            <input type="email" class="form-control form-control-icon" id="email" placeholder="example@gmail.com" required>
-                                                            <i class="ri-mail-unread-line"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!--Occupation-->
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div class="asterisk">
-                                                    <label for="occupation" class="form-label">Occupation <span>*</span></label>
-                                                    <select class="form-select" id="occupation" required onchange="showAdditionalFieldsOccupation()">
-                                                        <option value="" disabled selected>Select Occupation</option>
-                                                        <option value="employed">Employed</option>
-                                                        <option value="student">Student</option>
-                                                        <option value="unemployed">Unemployed</option>
-                                                        <option value="unemployed">Retired</option>
-                                                    </select>
-                                                    </div>
-                                                </div>
-                                               <!-- employed-->
-                                                <div id="additionalFieldsEmployed" style="display: none;">
-                                                    <div class="row">
-                                                        <div class="col-xxl-3 col-md-6 offset-md-3 offset-xxl-3">
-                                                            <label for="educationalattainment" class="form-label">Educational Attainment <span>*</span></label>
-                                                            <input type="text" id="educational_attainment" class="form-control" required>
-                                                        </div>
-    
-                                                        <div class="col-xxl-3 col-md-6">
-                                                            <label for="school" class="form-label">School</label>
-                                                            <input type="text" class="form-control" id="emp_school" placeholder="School" required>
-                                                        </div>
-    
-                                                        <div class="col-xxl-3 col-md-6 offset-md-3 offset-xxl-3">
-                                                            <label for="Place of school" class="form-label">Place of School</label>
-                                                            <input type="text" id="emp_place_of_school" class="form-control" required>
-                                                        </div>
-    
-                                                        <div class="col-xxl-3 col-md-6 ">
-                                                            <label for="Degree" class="form-label">Degree</label>
-                                                            <input type="text" id="emp_degree" class="form-control" required>
-                                                        </div>
-                                                        <div class="col-xxl-3 col-md-6 ">
-                                                            <label for="Company" class="form-label">Company</label>
-                                                            <input type="text" id="company" class="form-control" required>
-                                                        </div>
-                                                        <div class="col-xxl-3 col-md-6 ">
-                                                            <label for="position" class="form-label">Position</label>
-                                                            <input type="text" id="position" class="form-control" required>
-                                                        </div>
-                                                        <div class="col-xxl-3 col-md-6 ">
-                                                            <label for="salary" class="form-label">Salary (Monthly Income)</label>
-                                                            <input type="text" id="salary" class="form-control" required>
-                                                        </div>
-                                                        <div class="col-xxl-3 col-md-6 ">
-                                                            <label for="Years_Income" class="form-label">Years employed</label>
-                                                            <input type="text" id="years_employed" class="form-control" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- student -->
-                                                <div id="additionalFieldsStudent" style="display: none;">
-                                                    <div class="row">
-                                                        <div class="col-xxl-3 col-md-6 offset-md-3 offset-xxl-3">
-                                                            <label for="grade_level" class="form-label">Education Level</label>
-                                                            <select class="form-select" id="grade_level"  onchange="toggleFields()">
-                                                                <option value="" disabled selected>Select Education Level</option>
-                                                                <option value="elementary">Elementary</option>
-                                                                <option value="highSchool">High School</option>
-                                                                <option value="seniorHighSchool">Senior High School</option>
-                                                                <option value="college">College</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                     <!-- student element choice -->
-                                                     <div id="elementaryFields" style="display: none;">
-                                                        <div class="row">
-                                                            <div class="col-xxl-3 col-md-6 offset-md-3 offset-xxl-3">
-                                                                <label for="elementary" class="form-label">Grade Level</label>
-                                                                <input type="text" id="elementary" class="form-control" required placeholder="Grade Level">
-                                                            </div>
-                                                        </div>
-                                                     </div>
-                                                     <div id="highSchoolFields" style="display: none;">
-                                                        <div class="row">
-                                                            <div class="col-xxl-3 col-md-6 offset-md-3 offset-xxl-3">
-                                                                <label for="highSchool" class="form-label">Grade Level</label>
-                                                                <input type="text" id="highSchool" class="form-control" required placeholder="Grade Level">
-                                                            </div>
-                                                        </div>
-                                                     </div>
-                                                     <div id="seniorHighSchoolFields" style="display: none;">
-                                                        <div class="row">
-                                                            <div class="col-xxl-3 col-md-6 offset-md-3 offset-xxl-3">
-                                                                <label for="seniorHighSchool" class="form-label">Strand</label>
-                                                                <select class="form-select" id="strand">
-                                                                    <option value="" disabled selected>Select Strand</option>
-                                                                    <option value="HUMSS">HUMSS</option>
-                                                                    <option value="ABM">ABM</option>
-                                                                    <option value="Gas">GAS</option>
-                                                                    <option value="Stem">Stem</option>
-                                                                    <option value="TVL">TVL</option>
-                                                                    <option value="ICT">ICT</option>
-                                                                    <option value="Arts">Arts & Design</option>
-                                                                </select>
-                                                        </div>
-                                                     </div>
-                                                     </div>
-                                                     <div id="CollegeFields" style="display: none;">
-                                                        <div class="row">
-                                                            <div class="col-xxl-3 col-md-6 offset-md-3 offset-xxl-3">
-                                                                <label for="collegeYear" class="form-label">Year Level</label>
-                                                                <input type="text" id="collegeYear" class="form-control" required placeholder="Grade Level">
-                                                            </div>
-                                                            <div class="col-xxl-3 col-md-6 ">
-                                                                <label for="collegeCourse" class="form-label">Course</label>
-                                                                <input type="text" id="collegeCourse" class="form-control" required placeholder="Course">
-                                                            </div>
-                                                            <div class="col-xxl-3 col-md-6 ">
-                                                                <label for="collegeSchool" class="form-label">School</label>
-                                                                <input type="text" id="collegeSchool" class="form-control" required placeholder="School">
-                                                            </div>
-                                                            <!-- <div class="col-xxl-3 col-md-6 ">
-                                                                <label for="collegeSchoolType" class="form-label">Type</label>
-                                                                <select class="form-select" id="strand">
-                                                                    <option value="" disabled selected>Select School Type</option>
-                                                                    <option value="Public">Public</option>
-                                                                    <option value="Private">Private</option>
-                                                                    </select>
-                                                            </div> -->
-                                                        </div>
-                                                     </div>
-                                                <!-- indigenous -->
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div class="asterisk">
-                                                    <label for="indigenous" class="form-label">Is Indigenous? <span>*</span></label>
-                                                    <select class="form-select" id="is_indigenous" onchange="Ethnicityfunction()">
-                                                        <option value="" disabled selected>Select Yes or No</option>
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
-                                                    </select>
-                                                    </div>
-                                                </div>
-                                                <div id="indigenousYes" style="display: none;">
-                                                    <div class="row ">
-                                                        <div class="col-xxl-3 col-md-6 offset-md-3 offset-xxl-3">
-                                                            <label for="indigenous_yes" class="form-label">What type?</label>
-                                                            <input type="text" id="indigenous_type" class="form-control" required placeholder="Type of Ethnicity">
-                                                        </div>
-                                                    </div>
-                                                 </div>
-                                                 <!-- disability -->
-                                                 <div class="col-xxl-3 col-md-6">
-                                                    <div class="asterisk">
-                                                    <label for="disability" class="form-label">Is Disability? <span>*</span></label>
-                                                    <select class="form-select" id="is_disability" onchange="Disabilityfunction()">
-                                                        <option value="" disabled selected>Select Yes or No</option>
-                                                        <option value="disability_Yes">Yes</option>
-                                                        <option value="No">No</option>
-                                                    </select>
-                                                    </div>
-                                                </div>
-                                                <div id="disabilityYes" style="display: none;">
-                                                    <div class="row ">
-                                                        <div class="col-xxl-3 col-md-6 offset-md-3 offset-xxl-3">
-                                                            <label for="Disability_ID" class="form-label">Disability ID</label>
-                                                            <input class="form-control" type="file" id="Disability_ID" required>
-                                                        </div>
-                                                    </div>
-                                                 </div>
-    
-    
-                                                 <!-- Voter -->
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div class="asterisk">
-                                                    <label for="voter" class="form-label">Is Registered Voter? <span>*</span></label>
-                                                    <select class="form-select" id="voter" onchange="RegisteredVoter()">
-                                                        <option value="" disabled selected>Select Yes or No</option>
-                                                        <option value="Yes_registered">Yes</option>
-                                                        <option value="No_registered">No</option>
-                                                    </select>
-                                                    </div>
-                                                </div>
-                                                <div id="RegisteredYes" style="display: none;">
-                                                    <div class="row ">
+		<div id="whole-content" style="display: none;">
+            {% extends 'main/index.html' %}
+            {% load static %}
+            {% block content %}
+                    <div class="square">
+                        <div class="container-fluid">
+                                <div class="row justify-content-start" >
+                                    <div class="col-lg-12">
+                                        <div class="card">
+                                            <div class="card-header align-items-center d-flex justify-content-between">
+                                                <h5 class="mb-sm-0">Personal Information</h4>
+                                            </div>
+                                            <!-- end card header -->
+                                            <form action="{% url 'forms' %}" method="post">
+                                            <div class="card-body">
+                                                <div class="live-preview">                                                                           
+                                                    <div class="row gy-3">
                                                         <div class="col-xxl-3 col-md-6">
                                                             <div class="asterisk">
-                                                            <label for="voting_precint" class="form-label">Voting Precint <span>*</span></label>
-                                                            <input type="text" id="precint_no" class="form-control" required placeholder="Voting Precint">
+                                                                <label for="firstname" class="form-label">First Name <span>*</span></label>
+                                                                <input type="form" class="form-control" id="first_name" placeholder="First Name" required>
+                                                            </div>
                                                         </div>
+                                                        <!--end col-->
+                                                        <div class="col-xxl-3 col-md-6">
+                                                            <div class="optional">
+                                                                <label for="" class="form-label">Middle Name (Optional)</label>
+                                                                <input type="form" class="form-control" id="middle_name" placeholder="Middle Name">
+                                                            </div>
+                                                        </div>                                         
+                                                        <!--end col-->
+                                                        <div class="col-xxl-3 col-md-6">
+                                                            <div class="asterisk"> 
+                                                                <label for="lastname" class="form-label">Last Name <span>*</span></label>
+                                                                <input type="form" class="form-control" id="last_name" placeholder="Last Name" required>
+                                                            </div>
+                                                        </div>
+                                                        <!--end col-->
+                                                        <div class="col-xxl-3 col-md-6">
+                                                           <div class="optional">
+                                                                <label for="Suffix" class="form-label">Suffix (Optional)</label>
+                                                                <div class="input-group">
+                                                                    <select class="form-select" id="suffix" required>
+                                                                        <option value="" disabled selected>Select a suffix</option>
+                                                                        <option value="Sr.">Sr.</option>
+                                                                        <option value="Jr.">Jr.</option>
+                                                                        <option value="I">I</option>
+                                                                        <option value="II">II</option>
+                                                                        <option value="III">III</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                 </div>
-                                                 <!-- Multiple Files Input Example -->
-                                                 <div class="col-xxl-3 col-md-6">
-                                                    <div class="asterisk">
-                                                    <label for="formFileMultiple" class="form-label">Valid ID <span>*</span></label>
-                                                    <input class="form-control" type="file" id="formFileMultiple" multiple>
-                                                     </div>
-                                                </div>
-    
-                                        </div>
-                                        </div>
-                                            <!-- family bg -->
+                                                    <!----END ROW---->
+                                                    <div class="row gy-3">
+                                                        <div class="col-xxl-3 col-md-6">
+                                                            <div class="asterisk">
+                                                                <label for="age" class="form-label">Age <span>*</span></label>
+                                                                <input type="text" class="form-control" id="age" value="" placeholder="Age" required>
+                                                            </div>
+                                                        </div>
+                                                        <!--end col-->
+                                                        <div class="col-xxl-3 col-md-6">
+                                                            <div class="asterisk">
+                                                                <label for="exampleInputdate" class="form-label">Birthday <span>*</span></label>
+                                                                <input type="date" class="form-control" id="birthday" required>
+                                                            </div>
+                                                        </div>
+                                                        <!--end col-->
+                                                         <div class="col-xxl-3 col-md-6">
+                                                            <div class="asterisk">
+                                                            <label for="birth_order" class="form-label">Birth Order <span>*</span></label>
+                                                            <select class="form-select" id="birth_order">
+                                                                <option value="" disabled selected>Select birth order</option>
+                                                                <option value="First Born">First Born</option>
+                                                                <option value="Second Born">Second Born</option>
+                                                                <option value="Middle Child">Middle Child</option>
+                                                                <option value="Youngest Child">Youngest Child</option>
+                                                                <option value="Only Child">Only Child</option>
+                                                            </select>
+                                                            </div>
+                                                        </div>
+                                                        <!--end col-->
+                                                        <div class="col-xxl-3 col-md-6">
+                                                            <div class="asterisk">
+                                                                <label for="birth_place" class="form-label">Birth Place <span>*</span></label>
+                                                                <input type="text" class="form-control" id="birth_place" placeholder="Birth Place" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!----END ROW---->
+                                                    <div class="row gy-3">
+                                                        <div class="col-xxl-3 col-md-6">
+                                                            <div class="asterisk">
+                                                                <label for="blood_type" class="form-label">Blood Type <span>*</span></label>
+                                                                <input type="text" class="form-control" id="blood_type" placeholder="Insert Blood Type" required>
+                                                            </div>
+                                                        </div>
+                                                        <!--end col-->
+                                                        <div class="col-xxl-3 col-md-6">
+                                                            <div class="asterisk">
+                                                                <label for="sex" class="form-label">Gender <span>*</span></label>
+                                                                <select class="form-select" id="sex" required>
+                                                                    <option value="" disabled selected>Select sex</option>
+                                                                    <option value="Male">Male</option>
+                                                                    <option value="Female">Female</option>
+                                                                    <option value="other">Other</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <!--end col-->
+                                                        <div class="col-xxl-3 col-md-6">
+                                                            <div class="asterisk">
+                                                            <label for="civil_status" class="form-label">Civil Status <span>*</span></label>
+                                                            <select class="form-select" id="civil_status" required onchange="showAdditionalFields()">
+                                                                <option value="" disabled selected>Select marital status</option>
+                                                                <option value="Single">Single</option>
+                                                                <option value="Married">Married</option>
+                                                                <option value="Widowed">Widowed</option>
+                                                            </select>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Address -->
+                                                        <div class="col-xxl-3 col-md-6">
+                                                            <div class="asterisk">
+                                                                <label for="house_no" class="form-label">House No/Blk <span>*</span></label>
+                                                                <input type="text" class="form-control" id="house_no" placeholder="House No/Blk" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!----END ROW---->
+                                                    <div class="row gy-3">
+                                                        <div class="col-xxl-3 col-md-6">
+                                                            <div class="asterisk">
+                                                                <label for="street" class="form-label">Street<span>*</span></label>
+                                                                <input type="text" class="form-control" id="street" placeholder="Street" required>
+                                                            </div>
+                                                        </div>
+                                                        <!--Phone number-->
+                                                        <div class="col-xxl-3 col-md-6">
+                                                            <div class="asterisk">
+                                                                <label for="phone_no" class="form-label">Phone Number <span>*</span></label>
+                                                                <div class="form-icon right">
+                                                                    <input type="form" class="form-control form-control-icon" id="phone_no" placeholder="09*******" required>
+                                                                    <i class="ri-phone-line"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--email-->
+                                                        <div class="col-xxl-3 col-md-6">
+                                                            <div class="asterisk">
+                                                                <label for="email" class="form-label">Email <span>*</span></label>
+                                                                <div class="form-icon right">
+                                                                    <input type="email" class="form-control form-control-icon" id="email" placeholder="example@gmail.com" required>
+                                                                    <i class="ri-mail-unread-line"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--Occupation-->
+                                                        <div class="col-xxl-3 col-md-6">
+                                                            <div class="asterisk">
+                                                            <label for="occupation" class="form-label">Occupation <span>*</span></label>
+                                                            <select class="form-select" id="occupation" required onchange="showAdditionalFieldsOccupation()">
+                                                                <option value="" disabled selected>Select Occupation</option>
+                                                                <option value="Employed">Employed</option>
+                                                                <option value="Student">Student</option>
+                                                                <option value="Unemployed">Unemployed</option>
+                                                                <option value="Retired">Retired</option>
+                                                            </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                       <!-- employed-->
+                                                        <div id="additionalFieldsEmployed" style="display: none;">
+                                                            <div class="">
+                                                                <div class="col-xxl-3 col-md-6 offset-md-3 offset-xxl-3">
+                                                                    <label for="educational_attainment" class="form-label">Educational Attainment <span>*</span></label>
+                                                                    <input type="text" id="educational_attainment" class="form-control" required>
+                                                                </div>
+                                                                <div class="">
+                                                                    <label for="emp_school" class="form-label">School</label>
+                                                                    <input type="text" class="form-control" id="emp_school" placeholder="School" required>
+                                                                </div>
+                                                                <div class="col-xxl-3 col-md-6 ">
+                                                                    <label for="emp_degree" class="form-label">Degree</label>
+                                                                    <input type="text" id="emp_degree" class="form-control" required>
+                                                                </div>
+                                                                <div class="col-xxl-3 col-md-6 ">
+                                                                    <label for="emp_company" class="form-label">Company</label>
+                                                                    <input type="text" id="emp_company" class="form-control" required>
+                                                                </div>
+                                                                <div class="col-xxl-3 col-md-6 ">
+                                                                    <label for="emp_position" class="form-label">Position</label>
+                                                                    <input type="text" id="emp_position" class="form-control" required>
+                                                                </div>
+                                                                <div class="col-xxl-3 col-md-6 ">
+                                                                    <label for="emp_salary" class="form-label">Salary (Monthly Income)</label>
+                                                                    <input type="text" id="emp_salary" class="form-control" required>
+                                                                </div>
+                                                                <div class="col-xxl-3 col-md-6 ">
+                                                                    <label for="years_employed" class="form-label">Years employed</label>
+                                                                    <input type="text" id="years_employed" class="form-control" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Student -->
+                                                        <div id="additionalFieldsStudent" style="display: none;">
+                                                            <div class="row">
+                                                                <div class="col-xxl-3 col-md-6 offset-md-3 offset-xxl-3">
+                                                                    <label for="educational_level" class="form-label">Education Level</label>
+                                                                    <select class="form-select" id="educational_level"  onchange="toggleFields()">
+                                                                        <option value="" disabled selected>Select Education Level</option>
+                                                                        <option value="Elementary">Elementary</option>
+                                                                        <option value="High School">High School</option>
+                                                                        <option value="Senior High School">Senior High School</option>
+                                                                        <option value="College">College</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Student Element Choice -->
+                                                            <div id="elementaryFields" style="display: none;">
+                                                                <div class="row">
+                                                                    <div class="col-xxl-3 col-md-6 offset-md-3 offset-xxl-3">
+                                                                        <label for="elem_grade_level" class="form-label">Grade Level</label>
+                                                                        <input type="text" id="elem_grade_level" class="form-control" required placeholder="Grade Level">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div id="highSchoolFields" style="display: none;">
+                                                                <div class="row">
+                                                                    <div class="col-xxl-3 col-md-6 offset-md-3 offset-xxl-3">
+                                                                        <label for="hs_grade_level" class="form-label">Grade Level</label>
+                                                                        <input type="text" id="hs_grade_level " class="form-control" required placeholder="Grade Level">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div id="seniorHighSchoolFields" style="display: none;">
+                                                                <div class="row">
+                                                                    <div class="col-xxl-3 col-md-6 offset-md-3 offset-xxl-3">
+                                                                        <label for="shs_grade_level" class="form-label">Grade Level</label>
+                                                                        <input type="text" id="shs_grade_level" class="form-control" required placeholder="Grade Level">
+                                                                    </div>
+                                                                    <div class="col-xxl-3 col-md-6 offset-md-3 offset-xxl-3">
+                                                                        <label for="shs_strand" class="form-label">Strand</label>
+                                                                        <select class="form-select" id="shs_strand">
+                                                                            <option value="" disabled selected>Select Strand</option>
+                                                                            <option value="HUMSS">HUMSS</option>
+                                                                            <option value="ABM">ABM</option>
+                                                                            <option value="Gas">GAS</option>
+                                                                            <option value="STEM">STEM</option>
+                                                                            <option value="TVL">TVL</option>
+                                                                            <option value="ICT">ICT</option>
+                                                                            <option value="Arts">Arts & Design</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div id="CollegeFields" style="display: none;">
+                                                                <div class="row">
+                                                                    <div class="col-xxl-3 col-md-6 ">
+                                                                        <label for="college_course" class="form-label">Course</label>
+                                                                        <input type="text" id="college_course" class="form-control" required placeholder="Course">
+                                                                    </div>
+                                                                    <div class="col-xxl-3 col-md-6 offset-md-3 offset-xxl-3">
+                                                                        <label for="college_year" class="form-label">Year Level</label>
+                                                                        <input type="text" id="college_year" class="form-control" required placeholder="Grade Level">
+                                                                    </div>
+                                                                    <div class="col-xxl-3 col-md-6 ">
+                                                                        <label for="college_school" class="form-label">School</label>
+                                                                        <input type="text" id="college_school" class="form-control" required placeholder="School">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        <!--End of Occupation -->
+                                                        <div class="row gy-3">
+                                                           <div class="col-xxl-3 col-md-6">
+                                                                <div class="asterisk">
+                                                                    <label for="ethnicity" class="form-label">Ethnicity<span>*</span></label>
+                                                                    <input type="text" class="form-control" id="ethnicity" placeholder="Ethnicity" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xxl-3 col-md-6">
+                                                                <div class="asterisk">
+                                                                    <label for="religion" class="form-label">Religion<span>*</span></label>
+                                                                    <input type="text" class="form-control" id="religion" placeholder="Religion" required>
+                                                                </div>
+                                                            </div>    
+                                                        <div class="col-xxl-3 col-md-6">
+                                                            <div class="optional">
+                                                                <label for="SSS_no" class="form-label">SSS Number (Optional)</label>
+                                                                <input type="form" class="form-control" id="SSS_no" placeholder="Insert SSS Number">
+                                                            </div>
+                                                        </div>         
+                                                            <!--end col-->
+                                                            <div class="col-xxl-3 col-md-6">
+                                                                <div class="optional">
+                                                                    <label for="TIN_no" class="form-label">TIN Number (Optional)</label>
+                                                                    <input type="form" class="form-control" id="TIN_no" placeholder="Insert TIN Number">
+                                                                </div>
+                                                            </div>
+                                                            <!--end col-->
+                                                            <div class="col-xxl-3 col-md-6">
+                                                                <div class="optional"> 
+                                                                    <label for="GSIS_no" class="form-label">GSIS Number (Optional)</label>
+                                                                    <input type="form" class="form-control" id="GSIS_no" placeholder="Insert GSIS Number">
+                                                                </div>
+                                                            </div>
+                                                            <!--end col-->
+                                                                <div class="col-xxl-3 col-md-6">
+                                                                    <div class="asterisk">
+                                                                    <label for="is_single_parent" class="form-label">Is Single Parent?<span>*</span></label>
+                                                                    <select class="form-select" id="is_single_parent">
+                                                                        <option value="" disabled selected>Select Yes or No</option>
+                                                                        <option value="Yes">Yes</option>
+                                                                        <option value="No">No</option>
+                                                                    </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                            
+                                                    <!--END ROW-->
+                                                    <div class="row gy-3">
+                                                        <div class="col-xxl-3 col-md-6">
+                                                            <div class="asterisk">
+                                                            <label for="is_indigenous" class="form-label">Is Indigenous? <span>*</span></label>
+                                                            <select class="form-select" id="is_indigenous" onchange="Ethnicityfunction()">
+                                                                <option value="" disabled selected>Select Yes or No</option>
+                                                                <option value="Yes">Yes</option>
+                                                                <option value="No">No</option>
+                                                            </select>
+                                                            </div>
+                                                        </div>
+                                                        <div id="indigenousYes" style="display: none;">
+                                                            <div class="row ">
+                                                                <div class="col-xxl-3 col-md-6 offset-md-3 offset-xxl-3">
+                                                                    <label for="indigenous_yes" class="form-label">What type?</label>
+                                                                    <input type="text" id="indigenous_type" class="form-control" required placeholder="Type of Ethnicity">
+                                                                </div>
+                                                            </div>
+                                                         </div>
+                                                         <!-- pwd -->
+                                                         <div class="col-xxl-3 col-md-6">
+                                                            <div class="asterisk">
+                                                            <label for="is_pwd" class="form-label">Is Person with Disability? <span>*</span></label>
+                                                            <select class="form-select" id="is_pwd" onchange="PWDfunction()">
+                                                                <option value="" disabled selected>Select Yes or No</option>
+                                                                <option value="Yes">Yes</option>
+                                                                <option value="No">No</option>
+                                                            </select>
+                                                            </div>
+                                                        </div>
+                                                        <div id="pwdYes" style="display: none;">
+                                                            <div class="row ">
+                                                                <div class="col-xxl-3 col-md-6 offset-md-3 offset-xxl-3">
+                                                                    <label for="pwd_id" class="form-label">PWD ID</label>
+                                                                    <input class="form-control" type="text" id="pwd_id" required>
+                                                                </div>
+                                                            </div>
+                                                         </div>
+                                                         <!-- Voter -->
+                                                        <div class="col-xxl-3 col-md-6">
+                                                            <div class="asterisk">
+                                                            <label for="is_registered_voter" class="form-label">Is Registered Voter? <span>*</span></label>
+                                                            <select class="form-select" id="is_registered_voter" onchange="RegisteredVoter()">
+                                                                <option value="" disabled selected>Select Yes or No</option>
+                                                                <option value="Yes">Yes</option>
+                                                                <option value="No">No</option>
+                                                            </select>
+                                                            </div>
+                                                        </div>
+                                                        <div id="registeredYes" style="display: none;">
+                                                            <div class="row ">
+                                                                <div class="col-xxl-3 col-md-6">
+                                                                    <div class="">
+                                                                    <label for="voting_precint_no" class="form-label">Voting Precint No. <span>*</span></label>
+                                                                    <input type="text" id="voting_precint_no" class="form-control" required placeholder="Voting Precint">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                         </div>
+                                                         <!-- Multiple Files Input Example -->
+                                                         <div class="col-xxl-3 col-md-6">
+                                                            <div class="asterisk">
+                                                            <label for="valid_id" class="form-label">Valid ID <span>*</span></label>
+                                                            <input class="form-control" type="file" id="valid_id" multiple>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--END ROW-->
+                                                        <!-- family bg -->
+                                                                <div class="col-lg-12">
+                                                                    <div class="card">
+                                                                        <br>
+                                                                        <div class="card-header align-items-center d-flex justify-content-between">
+                                                                            <h5 class="mb-sm-0">Mother's Information (Optional) </h5>
+                                                                        </div>
+                                                                <!-- end card header -->
+                                                                        <div class="card-body">
+                                                                            <div class="live-preview">
+                                                                                <div class="row gy-4">
+                                                                                    <div class="col-xxl-3 col-md-6">
+                                                                                        <div class="optional">
+                                                                                            <label for="m_first_name" class="form-label">First Name</label>
+                                                                                            <input type="form" class="form-control" id="m_first_name" placeholder="First Name">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                <!--end col-->
+                                                                                    <div class="col-xxl-3 col-md-6">
+                                                                                        <div class="optional">
+                                                                                            <label for="m_middle_name" class="form-label"> Middle Name</label>
+                                                                                            <input type="form" class="form-control" id="m_middle_name" placeholder="Middle Name">
+                                                                                      </div>
+                                                                                    </div>
+                                                                                <!--end col-->
+                                                                                    <div class="col-xxl-3 col-md-6">
+                                                                                        <div class="optional">
+                                                                                        <label for="lastname" class="form-label"> Last Name</label>
+                                                                                        <input type="form" class="form-control" id="m_last_name" placeholder="Last Name">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!--end col-->
+                                                                                <div class="col-xxl-3 col-md-6">
+                                                                                    <div class="optional">
+                                                                                        <label for="Address" class="form-label">House No/Blk<span>*</span></label>
+                                                                                        <input type="text" class="form-control" id="m_blk" placeholder="House No/Blk">
+                                                                                    </div>
+                                                                                </div>
+                                                                                </div>
+                                                                            <!--END ROW-->
+                                                                            <div class="row gy-2">
+                                                                                <div class="col-xxl-3 col-md-6">
+                                                                                    <div class="optional">
+                                                                                        <label for="Address" class="form-label">Street<span>*</span></label>
+                                                                                        <input type="text" class="form-control" id="m_street" placeholder="Street">
+                                                                                    </div>
+                                                                                </div>
+                                                                            <!--end col-->
+                                                                            <div class="col-xxl-3 col-md-6">
+                                                                                <div class="optional">
+                                                                                    <label for="exampleInputdate" class="form-label">Birthday</label>
+                                                                                    <input type="date" class="form-control" id="m_birthday">
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--end col-->
+                                                                            <div class="col-xxl-3 col-md-6">
+                                                                                <div class="optional">
+                                                                                    <label for="sex" class="form-label">Gender</label>
+                                                                                    <select class="form-select" id="m_sex">
+                                                                                        <option value="" disabled selected>Select sex</option>
+                                                                                        <option value="male">Male</option>
+                                                                                        <option value="female">Female</option>
+                                                                                        <option value="other">Other</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--end col-->
+                                                                            <div class="col-xxl-3 col-md-6">
+                                                                                <div class="optional">
+                                                                                    <label for="phonenum" class="form-label">Phone Number</label>
+                                                                                    <div class="form-icon right">
+                                                                                        <input type="phone" class="form-control form-control-icon" id="m_phone_no" placeholder="09*******">
+                                                                                        <i class="ri-phone-line"></i>
+                                                                                    </div>
+                                                                                 </div>
+                                                                            </div>
+                                                                            </div>
+                                                                            <!--END ROW-->
+                                                                            <div class="row gy-2">
+                                                                                <div class="col-xxl-3 col-md-6">
+                                                                                    <div class="optional">
+                                                                                        <label for="email" class="form-label">Email</label>
+                                                                                        <div class="form-icon right">
+                                                                                            <input type="email" class="form-control form-control-icon" id="m_email" placeholder="example@gmail.com">
+                                                                                            <i class="ri-mail-unread-line"></i>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>              
+                                                                            </div>
+                                                                        </div> <!--live-preview-->
+                                                                    </div> <!--card-body-->
+                                                                </div> <!--card-->
+                                                            </div> <!--col-lg-12-->
+                                                            <!--end of family-bg mother info-->
+                                                        <!-- Father's Information -->
                                                         <div class="col-lg-12">
                                                             <div class="card">
                                                                 <div class="card-header align-items-center d-flex justify-content-between">
-                                                                    <h4 class="mb-sm-0">Mother's Information</h4>
+                                                                    <h5 class="mb-sm-0">Father's Information (Optional)</h5>
                                                                 </div>
                                                         <!-- end card header -->
                                                                 <div class="card-body">
                                                                     <div class="live-preview">
-                                                                        <div class="row gy-4">
+                                                                        <div class="row gy-2">
                                                                             <div class="col-xxl-3 col-md-6">
-                                                                                <div class="asterisk">
-                                                                                    <label for="m_first_name" class="form-label"> Mother's First Name <span>*</span></label>
-                                                                                    <input type="form" class="form-control" id="m_first_name" placeholder="First Name">
+                                                                                <div class="optional">
+                                                                                    <label for="firstname" class="form-label"> First Name</label>
+                                                                                    <input type="form" class="form-control" id="f_first_name" placeholder="First Name">
                                                                                 </div>
                                                                             </div>
+                                                                            <!--end col-->
                                                                             <div class="col-xxl-3 col-md-6">
-                                                                                <div class="asterisk">
-                                                                                    <label for="m_middle_name" class="form-label"> Middle Name </label>
-                                                                                    <input type="form" class="form-control" id="m_middle_name" placeholder="Middle Name">
+                                                                                <div class="optional">
+                                                                                    <label for="middlename" class="form-label"> Middle Name</label>
+                                                                                    <input type="form" class="form-control" id="f_middle_name" placeholder="Middle Name">
                                                                               </div>
                                                                             </div>
+                                                                            <!--end col-->
                                                                             <div class="col-xxl-3 col-md-6">
-                                                                                <div class="asterisk">
-                                                                                <label for="lastname" class="form-label"> Last Name <span>*</span></label>
-                                                                                <input type="form" class="form-control" id="m_last_name" placeholder="Last Name">
+                                                                                <div class="optional">
+                                                                                <label for="lastname" class="form-label"> Last Name</label>
+                                                                                <input type="form" class="form-control" id="f_last_name" placeholder="Last Name">
                                                                             </div>
                                                                         </div>
+                                                                        <!--end col-->
                                                                         <div class="col-xxl-3 col-md-6">
+                                                                            <div class="optional">
                                                                             <label for="Suffix" class="form-label">Suffix</label>
                                                                             <div class="input-group">
-                                                                                <select class="form-select" id="m_suffix" required>
+                                                                                <select class="form-select" id="f_suffix">
                                                                                     <option value="" disabled selected>Select a suffix</option>
                                                                                     <option value="Sr.">Sr.</option>
                                                                                     <option value="Jr.">Jr.</option>
@@ -480,272 +529,72 @@
                                                                                 </select>
                                                                             </div>
                                                                         </div>
+                                                                        </div>
+                                                                        <!----END ROW---->
+                                                                        <div class="row gy-2">
                                                                         <div class="col-xxl-3 col-md-6">
-                                                                            <div class="asterisk">
-                                                                                <label for="Address" class="form-label">House No/Blk <span>*</span></label>
-                                                                                <input type="text" class="form-control" id="m_blk" placeholder="House No/Blk" required>
+                                                                            <div class="optional">
+                                                                                <label for="Address" class="form-label">House No/Blk</label>
+                                                                                <input type="text" class="form-control" id="f_blk" placeholder="House No/Blk">
                                                                             </div>
                                                                         </div>
+                                                                        <!--end col-->
                                                                         <div class="col-xxl-3 col-md-6">
-                                                                            <div class="asterisk">
-                                                                                <label for="Address" class="form-label">Street<span>*</span></label>
-                                                                                <input type="text" class="form-control" id="m_street" placeholder="Street" required>
+                                                                            <div class="optional">
+                                                                                <label for="Address" class="form-label">Street</label>
+                                                                                <input type="text" class="form-control" id="f_street" placeholder="Street">
                                                                             </div>
                                                                         </div>
+                                                                        <!--end col-->
                                                                     <div class="col-xxl-3 col-md-6">
-                                                                        <div class="asterisk">
-                                                                            <label for="exampleInputdate" class="form-label">Birthday <span>*</span></label>
-                                                                            <input type="date" class="form-control" id="m_birthday" required>
+                                                                        <div class="optional">
+                                                                            <label for="exampleInputdate" class="form-label">Birthday</label>
+                                                                            <input type="date" class="form-control" id="f_birthday">
                                                                         </div>
                                                                     </div>
+                                                                    <!--end col-->
                                                                     <div class="col-xxl-3 col-md-6">
-                                                                        <div class="asterisk">
-                                                                            <label for="gender" class="form-label">Gender <span>*</span></label>
-                                                                            <select class="form-select" id="m_gender" required>
-                                                                                <option value="" disabled selected>Select gender</option>
+                                                                        <div class="optional">
+                                                                            <label for="sex" class="form-label">Gender</label>
+                                                                            <select class="form-select" id="f_sex">
+                                                                                <option value="" disabled selected>Select sex</option>
                                                                                 <option value="male">Male</option>
                                                                                 <option value="female">Female</option>
                                                                                 <option value="other">Other</option>
                                                                             </select>
                                                                         </div>
                                                                     </div>
+                                                                </div>
+                                                                <!--END ROW-->
+                                                                <div class="row gy-2">
                                                                     <div class="col-xxl-3 col-md-6">
-                                                                        <div class="asterisk">
-                                                                            <label for="phonenum" class="form-label">Phone Number <span>*</span></label>
+                                                                        <div class="optional">
+                                                                            <label for="phonenum" class="form-label">Phone Number</label>
                                                                             <div class="form-icon right">
-                                                                                <input type="phone" class="form-control form-control-icon" id="m_phone_no" placeholder="09*******" required>
+                                                                                <input type="phone" class="form-control form-control-icon" id="f_phone_no" placeholder="09*******">
                                                                                 <i class="ri-phone-line"></i>
                                                                             </div>
                                                                          </div>
-                                                                        </div>
+                                                                    </div>
+                                                                    <!--end col-->
                                                                         <div class="col-xxl-3 col-md-6">
-                                                                            <div class="asterisk">
-                                                                                <label for="email" class="form-label">Email <span>*</span></label>
+                                                                            <div class="optional">
+                                                                                <label for="email" class="form-label">Email</label>
                                                                                 <div class="form-icon right">
-                                                                                    <input type="email" class="form-control form-control-icon" id="m_email" placeholder="example@gmail.com" required>
+                                                                                    <input type="email" class="form-control form-control-icon" id="f_email" placeholder="example@gmail.com">
                                                                                     <i class="ri-mail-unread-line"></i>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                    
-                                                                        
                                                                 </div>
-                                                                </div>
-                                                          </div>
-                                                         </div>
-                                                         </div>
-    
-                                                <!-- Father's Information -->
-                                                <div class="col-lg-12">
-                                                    <div class="card">
-                                                        <div class="card-header align-items-center d-flex justify-content-between">
-                                                            <h4 class="mb-sm-0">Father's Information</h4>
-                                                        </div>
-                                                <!-- end card header -->
-                                                        <div class="card-body">
-                                                            <div class="live-preview">
-                                                                <div class="row gy-4">
-                                                                    <div class="col-xxl-3 col-md-6">
-                                                                        <div class="asterisk">
-                                                                            <label for="firstname" class="form-label"> Father's First Name <span>*</span></label>
-                                                                            <input type="form" class="form-control" id="f_first_name" placeholder="First Name">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xxl-3 col-md-6">
-                                                                        <div class="asterisk">
-                                                                            <label for="middlename" class="form-label"> Middle Name </label>
-                                                                            <input type="form" class="form-control" id="f_middle_name" placeholder="Middle Name">
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-xxl-3 col-md-6">
-                                                                        <div class="asterisk">
-                                                                        <label for="lastname" class="form-label"> Last Name <span>*</span></label>
-                                                                        <input type="form" class="form-control" id="f_last_name" placeholder="Last Name">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xxl-3 col-md-6">
-                                                                    <label for="Suffix" class="form-label">Suffix</label>
-                                                                    <div class="input-group">
-                                                                        <select class="form-select" id="f_suffix" required>
-                                                                            <option value="" disabled selected>Select a suffix</option>
-                                                                            <option value="Sr.">Sr.</option>
-                                                                            <option value="Jr.">Jr.</option>
-                                                                            <option value="I">I</option>
-                                                                            <option value="II">II</option>
-                                                                            <option value="III">III</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xxl-3 col-md-6">
-                                                                    <div class="asterisk">
-                                                                        <label for="Address" class="form-label">House No/Blk <span>*</span></label>
-                                                                        <input type="text" class="form-control" id="f_blk" placeholder="House No/Blk" required>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xxl-3 col-md-6">
-                                                                    <div class="asterisk">
-                                                                        <label for="Address" class="form-label">Street<span>*</span></label>
-                                                                        <input type="text" class="form-control" id="f_street" placeholder="Street" required>
-                                                                    </div>
-                                                                </div>
-                                                            <div class="col-xxl-3 col-md-6">
-                                                                <div class="asterisk">
-                                                                    <label for="exampleInputdate" class="form-label">Birthday <span>*</span></label>
-                                                                    <input type="date" class="form-control" id="f_birthday" required>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xxl-3 col-md-6">
-                                                                <div class="asterisk">
-                                                                    <label for="gender" class="form-label">Gender <span>*</span></label>
-                                                                    <select class="form-select" id="f_gender" required>
-                                                                        <option value="" disabled selected>Select gender</option>
-                                                                        <option value="male">Male</option>
-                                                                        <option value="female">Female</option>
-                                                                        <option value="other">Other</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xxl-3 col-md-6">
-                                                                <div class="asterisk">
-                                                                    <label for="phonenum" class="form-label">Phone Number <span>*</span></label>
-                                                                    <div class="form-icon right">
-                                                                        <input type="phone" class="form-control form-control-icon" id="f_phone_no" placeholder="09*******" required>
-                                                                        <i class="ri-phone-line"></i>
-                                                                    </div>
-                                                                 </div>
-                                                                </div>
-                                                                <div class="col-xxl-3 col-md-6">
-                                                                    <div class="asterisk">
-                                                                        <label for="email" class="form-label">Email <span>*</span></label>
-                                                                        <div class="form-icon right">
-                                                                            <input type="email" class="form-control form-control-icon" id="f_email" placeholder="example@gmail.com" required>
-                                                                            <i class="ri-mail-unread-line"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                        </div>
-                                                        </div>
-                                                  </div>
-                                                 </div>
-                                                 </div>
-                                            </form>
-                                                <!-- Household information -->
-                                                <!-- <div class="col-lg-12">
-                                                    <div class="card">
-                                                        <div class="card-header align-items-center d-flex justify-content-between">
-                                                            <h4 class="mb-sm-0">Household Information Form</h4>
-                                                        </div> -->
-                                                <!-- end card header -->
-                                                        <!-- <div class="card-body">
-                                                            <div class="live-preview">
-                                                                <div class="row gy-4">
-                                                                    <div class="col-xxl-3 col-md-6">
-                                                                        <div class="asterisk">
-                                                                            <label for="household_name" class="form-label"> Household Name <span>*</span></label>
-                                                                            <input type="form" class="form-control" id="household_name" placeholder="Household Name">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xxl-3 col-md-6">
-                                                                        <div class="asterisk">
-                                                                            <label for="Region" class="form-label">Region <span>*</span></label>
-                                                                            <select class="form-select" id="Street" required onchange="">
-                                                                                <option value="" disabled selected>Select Street</option>
-                                                                                <option value="">Street1</option>
-                                                                                <option value="">S2</option>
-                                                                                <option value="">s3</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                end col
-                                                                    <div class="col-xxl-3 col-md-6">
-                                                                        <div class="asterisk">
-                                                                            <label for="barangay" class="form-label">Barangay <span>*</span></label>
-                                                                                <input type="text" class="form-control form-control-icon" id="barangay" placeholder="Barangay" required>
-                                                                        </div>
-                                                                    </div>
-                                                            end col
-                                                                    <div class="col-xxl-3 col-md-6">
-                                                                        <div class="asterisk">
-                                                                        <label for="Province" class="form-label">Province <span>*</span></label>
-                                                                        <select class="form-select" id="Province" required onchange="">
-                                                                            <option value="" disabled selected>Select Province</option>
-                                                                            <option value="">province</option>
-                                                                            <option value=""></option>
-                                                                            <option value=""></option>
-                                                                            <option value=""></option>
-                                                                        </select>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xxl-3 col-md-6">
-                                                                        <div class="asterisk">
-                                                                            <label for="Zip_Code" class="form-label">Zip Code <span>*</span></label>
-                                                                                <input type="text" class="form-control form-control-icon" id="Zip_code" placeholder="Zip Code" required>
-                                                                    </div>
-                                                                    </div>
-    
-                                                                    <div class="col-xxl-3 col-md-6">
-                                                                        <div class="asterisk">
-                                                                            <label for="Country" class="form-label"> Country <span>*</span></label>
-                                                                            <input type="form" class="form-control" id="country" placeholder="Country">
-                                                                    </div>
-                                                                    </div>
-                                                                <div class="col-xxl-3 col-md-6">
-                                                                    <div class="asterisk">
-                                                                    <label for="Residence" class="form-label">Type of Residence <span>*</span></label>
-                                                                   ` <div class="input-group">
-                                                                        <select class="form-select" id="Residence" required>
-                                                                            <option value="" disabled selected>Select a Residence</option>
-                                                                            <option value="Owned">Owned</option>
-                                                                            <option value="Rented">Rented</option>
-                                                                            <option value="Other">Other (Please specify)</option>
-                                                                        </select>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                            Emergency Contact Information 
-                                                <div class="col-lg-12">
-                                                    <div class="card">
-                                                        <div class="card-header align-items-center d-flex justify-content-between">
-                                                            <h4 class="mb-sm-0">Emergency Contact Information</h4>
-                                                        </div>
-                                                end card header
-                                                        <div class="card-body">
-                                                            <div class="live-preview">
-                                                                <div class="row gy-4">
-                                                                    <div class="col-xxl-3 col-md-6">
-                                                                        <div class="asterisk">
-                                                                            <label for="emergency_name" class="form-label"> Emergency Contact Name <span>*</span></label>
-                                                                            <input type="form" class="form-control" id="emergency_name" placeholder="Emergency Contact Name">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-xxl-3 col-md-6">
-                                                                        <div class="asterisk">
-                                                                            <label for="relationship" class="form-label">Relationship <span>*</span></label>
-                                                                                <input type="text" class="form-control form-control-icon" id="relationship_emergency" placeholder="Relationship" required>
-                                                                         </div>
-                                                                    </div>
-                                                                <div class="col-xxl-3 col-md-6">
-                                                                    <div class="asterisk">
-                                                                        <label for="phonenum" class="form-label">Phone Number <span>*</span></label>
-                                                                        <div class="form-icon right">
-                                                                            <input type="phone" class="form-control form-control-icon" id="phonenum" placeholder="09*******" required>
-                                                                            <i class="ri-phone-line"></i>
-                                                                        </div>
-                                                                     </div>
-                                                                    </div>
-                                                                </div>
-                                                                    end col
-                                                        </div>
-                                                        </div>
-                                                  </div> -->
-    
-    
-                                                   <!-- start of buttons -->
+                                                            </div> <!--live-preview-->
+                                                        </div> <!--card-body-->
+                                                    </div> <!--card-->
+                                                </div> <!--col-lg-12-->
+                                            </div><!--live-preview-->
+                                        </div> <!--card-body-->    
+                                    </form>
+                                                    <!-- start of buttons -->
                                                     <div class="card-body">
                                                         <div class="live-preview">
                                                             <div class="button-container">
@@ -766,150 +615,223 @@
                                                                         </div><!-- /.modal-content -->
                                                                     </div><!-- /.modal-dialog -->
                                                                 </div><!-- /.modal -->
-                                                            <div class="save-button">
-                                                                <button type="button" class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#firstmodal">Save</button>
-                                                                        <!-- First modal dialog -->
-                                                                                <div class="modal fade" id="firstmodal" aria-hidden="true" tabindex="-1">
-                                                                                    <div class="modal-dialog modal-dialog-centered">
-                                                                                        <div class="modal-content">
-                                                                                            <div class="modal-body text-center p-5">
-                                                                                                <lord-icon src="https://cdn.lordicon.com/tdrtiskw.json" trigger="loop" colors="primary:#f7b84b,secondary:#405189" style="width:130px;height:130px">
-                                                                                                </lord-icon>
-                                                                                                <div class="mt-4 pt-4">
-                                                                                                    <h4>Are you sure you want to save it?</h4>
-                                                                                                 <!-- Toogle to second dialog -->
-                                                                                                 <button class="btn btn-light" data-bs-target="#firstmodal" data-bs-toggle="modal" data-bs-dismiss="modal">Cancel</button>
-                                                                                                 <a href ="{% url 'profiles' %}"class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#secondmodal" id="confirmSubmitBtn">Yes</a>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <!-- Second modal dialog -->
-                                                                                <div class="modal fade" id="secondmodal" aria-hidden="true" tabindex="-1">
-                                                                                    <div class="modal-dialog modal-dialog-centered">
-                                                                                        <div class="modal-content">
-                                                                                            <div class="modal-body text-center p-5">
-                                                                                                <lord-icon src="https://cdn.lordicon.com/zpxybbhl.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:150px;height:150px">
-                                                                                                </lord-icon>
-                                                                                                <div class="mt-4 pt-3">
-                                                                                                    <h4 class="mb-3">Your forms are succesfully saved!</h4>
-                                                                                                    <div class="hstack gap-2 justify-content-center">
-                                                                                                        <a href="{% url 'profiles' %}"  class="btn btn-light">Close</a>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                </div>
-                                                                             </div>
-                                                                     </div><!-- end save button -->
+                                                                <div class="save-button">
+                                                                    <button type="button" class="btn btn-success waves-effect waves-light"  id="confirmSubmitBtn">Save</button>
+                                                                </div>            
                                                                 </div><!-- end button container -->
                                                             </div><!-- end live preview -->
                                                         </div><!-- end card body (Start button) -->
-                                                    </div> <!--end col lg emergency info-->
-                                                </div><!--card-body start personal info--> 
-                                            </div><!--card personal info--> 
-                                         </div><!--col lg personal info-->
-                                    </div><!-- row personal info -->
-                                </div><!-- end container fluid -->
-                            </div><!--end of square-->
-                        </div> <!--div protection-->                                                 
-                                                
-    {% block css %}
-    <link rel="stylesheet" href="{% static 'css/forms.css' %}">
-    {% endblock %}
-    
-     {% block js%}
-        <script src="{% static 'js/form.js' %}"></script>
-    
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-    
-    
+                                                    </div> <!--end col lg emergency info-->                                         
+                                                        </div><!--card-body start personal info--> 
+                                                    </div><!--card personal info--> 
+                                                 </div><!--col lg personal info-->
+                                            </div><!-- row personal info -->
+                                        </div><!-- end container fluid -->
+                                    </div><!--end of square-->
+                                </div> <!--div protection-->                                                                                                
+            {% block css %}
+            <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+            <link href="{% static 'img/bitbo_logo.png' %}" rel="icon">
+            {% endblock %}
+            
+            {% block js%}
+            <script src="{% static 'js/forms.js' %}"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+         
+        <script>
+        // Event listener for the "Save" button click
+        $(document).ready(function () {
+            $("#confirmSubmitBtn").unbind('click').click(function (event) {
+                event.preventDefault();
+                var isValid = true;
+                $('.asterisk input, .asterisk select, .asterisk textarea').each(function () {
+                    var fieldValue = $(this).val();
+                    if (!fieldValue || fieldValue.trim() === '') {
+                        $(this).addClass('is-invalid');
+                        isValid = false;
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Resident fields are required!",
+                        });
+                    } else {
+                        $(this).removeClass('is-invalid');
+                    }
+                });
         
-    <script>
-    
-    $(document).ready(function () {
-    
-        // Handle the actual form submission in the second modal
-        $("#confirmSubmitBtn").unbind('click').click(function (event) {
-            event.preventDefault();
-    
-            var token = localStorage.getItem('token');
-            if (!token) {
-                console.error('No token found');
-                return;
+                if (isValid) {
+                    confirmSave();
+                }
+            });
+        
+        //SAVE MODAL
+        function confirmSave() {
+                Swal.fire({
+                    title: "Do you want to save the changes?",
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: "Save",
+                    denyButtonText: `Don't save`
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // SweetAlert confirmation
+                        Swal.fire("Saved!", "", "success").then(() => {
+                            // Trigger the form submission when "Save" is clicked
+                            validateAndSubmit();
+                        });
+                    } else if (result.isDenied) {
+                        Swal.fire("Changes are not saved", "", "info");
+                        // Handle any additional actions or don't open the first modal
+                    }
+                });
             }
-    
-            // Serialize the form data as JSON
-            var formData = {
-                first_name: $('#first_name').val(),
-                middle_name: $('#middle_name').val(),
-                last_name: $('#last_name').val(),
-                suffix: $('#suffix').val(),
-                age: $('#age').val(),
-                birthday: $('#birthday').val(),
-                birth_order: $('#birth_order').val(),
-                birthplace: $('#birthplace').val(),
-                blood_type: $('#blood_type').val(),
-                gender: $('#gender').val(),
-                civil_status: $('#civil_status').val(),
-                house_no: $('#house_no').val(),
-                street: $('#street').val(),
-                phone_no: $('#phone_no').val(),
-                email: $('#email').val(),
-                occupation: $('#occupation').val(),
-                st_school: $('#st_school').val(),
-                school_type: $('#school_type').val(),
-                st_place_of_school: $('#st_place_of_school').val(),
-                grade_level: $('#grade_level').val(),
-                st_degree: $('#st_degree').val(),
-                course: $('#course').val(),
-                educational_attainment: $('#educational_attainment').val(),
-                emp_school: $('#emp_school').val(),
-                emp_place_of_school: $('#emp_place_of_school').val(),
-                emp_degree: $('#emp_degree').val(),
-                company: $('#company').val(),
-                position: $('#position').val(),
-                salary: $('#salary').val(),
-                years_employed: $('#years_employed').val(),
-                ethnicity: $('#ethnicity').val(),
-                religion: $('#religion').val(),
-                is_indigenous: $('#is_indigenous').val(),
-                indigenous_type: $('#indigenous_type').val(),
-                is_disability: $('#is_disability').val(),
-                disability: $('#disability').val(),
-                is_solo_parent: $('#is_solo_parent').val(),
-                is_registered_voter: $('#is_registered_voter').val(),
-                precint_no: $('#precint_no').val(),
-                SSS_no: $('#SSS_no').val(),
-                GSIS_no: $('#GSIS_no').val(),
-                TIN_no: $('#TIN_no').val(),
-                valid_id: $('#valid_id').val(),
-                m_first_name: $('#m_first_name').val(),
-                m_middle_name: $('#m_middle_name').val(),
-                m_last_name: $('#m_last_name').val(),
-                m_suffix: $('#m_suffix').val(),
-                m_blk: $('#m_blk').val(),
-                m_street: $('#m_street').val(),
-                m_birthday: $('#m_birthday').val(),
-                m_gender: $('#m_gender').val(),
-                m_phone_no: $('#m_phone_no').val(),
-                m_email: $('#m_email').val(),
-                f_first_name: $('#f_first_name').val(),
-                f_middle_name: $('#f_middle_name').val(),
-                f_last_name: $('#f_last_name').val(),
-                f_suffix: $('#f_suffix').val(),
-                f_blk: $('#f_blk').val(),
-                f_street: $('#f_street').val(),
-                f_birthday: $('#f_birthday').val(),
-                f_gender: $('#f_gender').val(),
-                f_phone_no: $('#f_phone_no').val(),
-                f_email: $('#f_email').val(),
-                // ... other fields
+        });
+             
+        // Function to validate and submit the form when "Save" is clicked
+        function validateAndSubmit() {
+            var occupation = $('#occupation').val();
+            var isValid = true;
+        
+            // Reset validation for all fields
+            $('.asterisk input, .asterisk select, .asterisk textarea').removeClass('is-invalid');
+        
+            // Perform validation based on occupation
+            if (occupation === "employed") {
+                $('.asterisk .employed').each(function () {
+                    var fieldValue = $(this).val();
+                    if (!fieldValue || fieldValue.trim() === '') {
+                        $(this).addClass('is-invalid');
+                        isValid = false;
+                    }
+                });
+            } else if (occupation === "student") {
+                var educationLevel = $('#educational_level').val();
+                var educationField;
+        
+                if (educationLevel === "Elementary") {
+                    educationField = $('#elem_grade_level');
+                } else if (educationLevel === "High School") {
+                    educationField = $('#hs_grade_level');
+                } else if (educationLevel === "Senior High School") {
+                    educationField = $('#shs_grade_level, #shs_strand');
+                } else if (educationLevel === "College") {
+                    educationField = $('#college_course, #college_year, #college_school');
+                }
+        
+                educationField.each(function () {
+                    var fieldValue = $(this).val();
+                    if (!fieldValue || fieldValue.trim() === '') {
+                        $(this).addClass('is-invalid');
+                        isValid = false;
+                    }
+                });
+            }
+        
+            if (isValid) {
+                // If the form is valid, submit the form
+                submitForm();
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Please fill in all required fields.",
+                });
+            }
+        }
+        
+         // Function to validate and submit the form when "Save" is clicked
+         function submitForm() {
+                var token = localStorage.getItem('token');
+                if (!token) {
+                    console.error('No token found');
+                    return;
+                }
+        
+                // Serialize the form data as JSON
+                var formData = {
+                        first_name: $('#first_name').val(),
+                        middle_name: $('#middle_name').val(),
+                        last_name: $('#last_name').val(),
+                        suffix: $('#suffix').val(),
+                        age: $('#age').val(),
+                        birthday: $('#birthday').val(),
+                        birth_order: $('#birth_order').val(),
+                        birth_place: $('#birth_place').val(),
+                        blood_type: $('#blood_type').val(),
+                        sex: $('#sex').val(),
+                        civil_status: $('#civil_status').val(),
+                        house_no: $('#house_no').val(),
+                        street: $('#street').val(),
+                        phone_no: $('#phone_no').val(),
+                        email: $('#email').val(),
+                        occupation: $('#occupation').val(),
+                 
+                        //FOR OCCUPATION: EMPLOYEES
+                        educational_attainment: $('#educational_attainment').val(),
+                        emp_school: $('#emp_school').val(),
+                        emp_degree: $('#emp_degree').val(),
+                        emp_company: $('#emp_company').val(),
+                        emp_position: $('#emp_position').val(),
+                        emp_salary: $('#emp_salary').val(),
+                        years_employed: $('#years_employed').val(),
+                        // FOR OCCUPATION: STUDENTS
+                        educational_level: $('#educational_level').val(),
+                        elem_grade_level: $('#elem_grade_level').val(),
+                        hs_grade_level: $('#hs_grade_level').val(),
+                        shs_grade_level: $('#shs_grade_level').val(),
+                        shs_strand: $('#shs_strand').val(),
+                        // FOR OCCUPATION: STUDENTS: COLLEGE
+                        college_course: $('#college_course').val(),
+                        college_year: $('#college_year').val(),
+                        college_school: $('#college_school').val(),
+        
+                        ethnicity: $('#ethnicity').val(),
+                        religion: $('#religion').val(),
+        
+                        is_indigenous: $('#is_indigenous').val(),
+                        indigenous_type: $('#indigenous_type').val(),
+        
+                        is_pwd: $('#is_pwd').val(),
+                        pwd_id: $('#pwd_id').val(),
+        
+                        is_single_parent: $('#is_single_parent').val(),
+        
+                        is_registered_voter: $('#is_registered_voter').val(),
+                        voting_precint_no: $('#voting_precint_no').val(),
+        
+                        SSS_no: $('#SSS_no').val(),
+                        GSIS_no: $('#GSIS_no').val(),
+                        TIN_no: $('#TIN_no').val(),
+                        valid_id: $('#valid_id').val(),
+        
+                        //Mother's Information
+                        m_first_name: $('#m_first_name').val(),
+                        m_middle_name: $('#m_middle_name').val(),
+                        m_last_name: $('#m_last_name').val(),
+                        m_blk: $('#m_blk').val(),
+                        m_street: $('#m_street').val(),
+                        m_birthday: $('#m_birthday').val(),
+                        m_sex: $('#m_sex').val(),
+                        m_phone_no: $('#m_phone_no').val(),
+                        m_email: $('#m_email').val(),
+                        //Father's Information
+                        f_first_name: $('#f_first_name').val(),
+                        f_middle_name: $('#f_middle_name').val(),
+                        f_last_name: $('#f_last_name').val(),
+                        f_suffix: $('#f_suffix').val(),
+                        f_blk: $('#f_blk').val(),
+                        f_street: $('#f_street').val(),
+                        f_birthday: $('#f_birthday').val(),
+                        f_sex: $('#f_sex').val(),
+                        f_phone_no: $('#f_phone_no').val(),
+                        f_email: $('#f_email').val(),
             };
-    
+                    
             $.ajax({
-                url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/residentprofiles/add",
+                url: "http://127.0.0.1:8000/residentprofiles/add",
                 type: "POST",
                 headers: {
                     'Authorization': 'Bearer ' + token,
@@ -923,26 +845,46 @@
                     $('#secondmodal').modal('hide');
                 },
                 error: function (error) {
-                    console.error("Error in adding resident:", error.responseText);
+                    if (error.status === 400 && error.responseJSON.detail.includes("Resident already exists")) {
+                        // Handle the case where resident already exists
+                        console.error("Resident already exists with the same data!");
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Resident already exists with the same data!",
+                        });
+                    } else {
+                        console.error("Error in adding resident:", error.responseText);
+                    }
                 }
             });
-        });
-    });
-    
-    //SECURTY
-       // Check for the token when the page loads
-       document.addEventListener("DOMContentLoaded", function() {
-             var token = localStorage.getItem('token');
-             if (token) {
-                 // Show the services content if the token is present
-                 document.getElementById('whole-content').style.display = 'block';
-             } else {
-                 // Redirect to login if token is not present
-                 window.location.href = "/login";  // Adjust the login page URL if necessary
-             }
-         });
+        }
+        
+            // Optional: Add an event listener to remove the red border when the user starts typing
+            $('.asterisk input, .asterisk select, .asterisk textarea').on('input', function () {
+                if ($(this).val().trim() !== '') {
+                    $(this).removeClass('is-invalid');
+                }
+            });
+        
+        // SECURITY
+            // Check for the token when the page loads
+            document.addEventListener("DOMContentLoaded", function() {
+                var token = localStorage.getItem('token');
+                if (token) {
+                    // Show the services content if the token is present
+                    document.getElementById('whole-content').style.display = 'block';
+                } else {
+                    // Redirect to login if token is not present
+                    window.location.href = "/login";  // Adjust the login page URL if necessary
+                }
+            });
         </script>
-    
-    
-     {% endblock %} 
-     {% endblock %}
+            
+        
+             {% endblock %} 
+             {% endblock %}
+                
+                
+                
+        

@@ -90,7 +90,7 @@
                                                     Any attempt to compromise the integrity of the system may result in legal action.
                                                 </li>
                                             </ul>
-                                            <p>Access to Bitbo may be terminated or suspended for users who violate these terms and conditions or engage in unauthorized activities.</p>
+                                            <p >Access to Bitbo may be terminated or suspended for users who violate these terms and conditions or engage in unauthorized activities.</p>
                                         </div>
                                     </div>
 
@@ -99,10 +99,14 @@
                                             <i data-feather="check-circle" class="text-success icon-dual-success icon-xs"></i>
                                         </div>
                                         <div class="flex-grow-1">
-                                            <p><b>By using the Bitbo, you acknowledge that you have read, understood, and agree to these terms and conditions.</b></p>
+                                            <p><b>By using the Bitbo, you acknowledge that you have read, understood, and agree to these terms and conditions.</b> if you agree to our terms and conditions, click yes to proceed.</p>
                                         </div>
                                     </div>
-
+                                    <div class="button-container">
+                                        <!-- cancel button with modals -->
+                                        <button class="btn btn-primary waves-effect waves-light" onclick="backpage()">No</button>
+                                        <button type="button" class="btn btn-success waves-effect waves-light" onclick="redirectToForms()">Yes</button>
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -127,14 +131,23 @@
 <link href="{% static 'css/custom.min.css' %}" rel="stylesheet" type="text/css" />
 
 
-<link href="{% static 'css/terms_conditions.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'css/terms_conditions_forms.css' %}" rel="stylesheet" type="text/css" />
 <link href="{% static 'css/privacy_policy.css' %}" rel="stylesheet" type="text/css" />
 
 
 {% endblock %}
 
 {% block js %}
-                
+<script>
+function redirectToForms() {
+    // Perform the redirection to the specified URL
+    window.location.href = "{% url 'forms' %}";
+  }
+  function backpage() {
+    // Perform the redirection to the specified URL
+    window.location.href = "{% url 'profiles' %}";
+  }
+</script>
 {% endblock %}
 
 

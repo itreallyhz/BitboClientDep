@@ -30,3 +30,42 @@ margin-top: 20%;
 .asterisk span{
   color: red;
 }
+
+.asterisk label.form-label {
+  font-size: 16px; /* Adjust the font size as needed */
+  /* You can add more styling properties as needed */
+}
+/* Style placeholders */
+.asterisk input::placeholder,
+.asterisk textarea::placeholder,
+.asterisk input[type="date"],
+.asterisk select {
+  color: gray; /* Adjust the color as needed */
+  /* You can add more styling properties as needed */
+  font-size: 16px;
+}
+.optional select{
+  color: gray; 
+  font-size: 16px;
+}
+.optional label.form-label {
+  font-size: 16px; /* Adjust the font size as needed */
+  /* You can add more styling properties as needed */
+}
+.btn{
+  font-size: 16px; /* Adjust the font size for the primary button */
+  /* You can add more styling properties as needed */
+}
+
+.search-box {
+  font-size: 16px; /* Adjust the font size for the search box */
+  /* You can add more styling properties as needed */
+}
+
+.search {
+  font-size: 16px; /* Adjust the font size for the search input */
+  /* You can add more styling properties as needed */
+}
+th{
+  font-size: 16px;
+}

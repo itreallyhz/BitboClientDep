@@ -1,0 +1,133 @@
+ <!--button-->
+ <button class="btn btn-soft-secondary filter-btn" data-residentid="' + resident.id + '" type="button" data-bs-toggle="modal" data-bs-target="#FilterModal">
+    <a class="dropdown-item"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Filter</a>
+    </button>
+ 
+ <!-- Advanced Search/Filter Modal -->
+ <div class="modal fade" id="FilterModal" tabindex="-1" aria-labelledby="editModalLabel" aria-modal="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="FilterModalTitle">Advanced Search/ Filter</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="javascript:void(0);">
+                    <div class="row g-4">
+                        <div class="col-xxl-3 col-md-6">
+                            <div class="asterisk">
+                                <label for="age" class="form-label">Age</label>
+                                <div class="input-group">
+                                    <select class="form-select" id="age">
+                                        <option value="" selected>Select age group</option>
+                                        <option value="0-2 yrs. old">0-2 years old</option>
+                                        <option value="3-5 yrs old">3-5 yrs old</option>
+                                        <option value="6-12 yrs. old">6-12 yrs. old</option>
+                                        <option value="13-19 yrs. old">13-19 yrs. old</option>
+                                        <option value="20-59 yrs. old">20-59 yrs. old</option>
+                                        <option value="60 and above">60 and above</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div class="asterisk">
+                                <label for="civil_status" class="form-label">Civil Status</label>
+                                <select class="form-select" id="civil_status">
+                                    <option value="" selected>Select civil status</option>
+                                    <option value="Single">Single</option>
+                                    <option value="Married">Married</option>
+                                    <option value="Widowed">Widowed</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div class="asterisk">
+                                <label for="blood_type" class="form-label">Blood Type</label>
+                                <select class="form-select" id="blood_type">
+                                    <option value="" selected>Select Blood Type</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="AB">AB</option>
+                                    <option value="O">O</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div class="asterisk">
+                                <label for="sex" class="form-label">Sex</label>
+                                <select class="form-select" id="sex">
+                                    <option value="" selected>Select sex</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div class="asterisk">
+                                <label for="occupation" class="form-label">Occupation <span>*</span></label>
+                                <select class="form-select" id="occupation">
+                                    <option value="" selected>Select Occupation</option>
+                                    <option value="Employed">Employed</option>
+                                    <option value="Student">Student</option>
+                                    <option value="Unemployed">Unemployed</option>
+                                    <option value="Retired">Retired</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div class="asterisk">
+                                <label for="is_single_parent" class="form-label">Is Single Parent? <span>*</span></label>
+                                <select class="form-select" id="is_single_parent">
+                                    <option value="" disabled selected>Select Yes or No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div class="asterisk">
+                                <label for="is_indigenous" class="form-label">Is Indigenous? <span>*</span></label>
+                                <select class="form-select" id="is_indigenous">
+                                    <option value="" selected>Select Yes or No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div class="asterisk">
+                                <label for="is_pwd" class="form-label">Is PWD? <span>*</span></label>
+                                <select class="form-select" id="is_pwd">
+                                    <option value="" selected>Select Yes or No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div class="asterisk">
+                                <label for="is_registered_voter" class="form-label">Is Registered Voter? <span>*</span></label>
+                                <select class="form-select" id="is_registered_voter">
+                                    <option value="" selected>Select Yes or No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row gy-3">
+                        <div class="col-lg-12">
+                            <div class="hstack gap-2 justify-content-end">
+                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- end of Advanced Search/ Filter  -->     

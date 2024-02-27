@@ -1,3 +1,4 @@
+
 {% extends 'main/index.html' %}
 {% load static %}
 {% block content %}
@@ -8,7 +9,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0 mt-4">CLEARANCES AND PERMITS</h4>
+                    <h3 class="mb-sm-0 mt-4">CLEARANCES AND PERMITS</h3>
 
                     <div class="page-title-right">
                         <!-- <ol class="breadcrumb m-0">
@@ -88,7 +89,6 @@
                        <!-- Image Container -->
                        <div class="col-12 text-center">
                         <div class="square-container">
-                            <label for="formFileMultiple" class="form-label1">Valid ID</label>
                             <img src="" alt="Preview Image" id="previewImage" class="img-fluid rounded" style="max-width: 200px; max-height: 200px;">
                         </div> 
                     </div>
@@ -96,7 +96,7 @@
                     <div class="row g-4">
                         <div class="col-xxl-3 col-md-6">
                             <div class="asterisk">
-                                <label for="Name" class="form-label1">Request:</label>
+                                <label for="Name" class="form-label1">Request: </label>
                                 <span class="type-request" id="type_of_request"></span>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                         <div class="col-xxl-3 col-md-6">
                             <div class="asterisk">
                                 <label for="name_of_resident" class="form-label1">Name of Resident:</label>
-                                <span class="name-resident" id="name_of_resident"></span>
+                                <span  id="name_of_resident"></span>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
@@ -151,10 +151,10 @@
                         <br>
                         <button id="approveButton"  data-user-id="{{clearances_permit.id}}" type="button" class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#firstmodal">Approve</button>
                  </div>
-                 <div class="release-button">
+                 <!--<div class="release-button">
                     <br>
                     <button id="releaseButton"  data-user-id="{{clearances_permit.id}}" type="button" class="btn btn-soft-secondary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#firstmodal">Release</button>
-             </div>
+             </div>-->
 
                  <div class="decline-button">   
                     <button id="declineButton"  data-user-id="{{clearances_permit.id}}" type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#firstmodal">Decline</button>     <!-- DECLINE BUTTON -->
@@ -302,6 +302,30 @@ $(document).ready(function () {
             loadClearancePermitDetails(clearancePermitId);
         });
     });
+
+// EMAIL 
+    // Add an event listener to the "Approve" button
+    // document.getElementById('approveButton').addEventListener('click', function() {
+    //         // Trigger the Email.send function
+    //         Email.send({
+    //             Host: "smtp.elasticemail.com",
+    //             Username: "mikapmarquez@gmail.com",
+    //             Password: "4F39070456D7F994F26A169505B1AD1DA300",
+    //             To: "mrqzmik@gmail.com",
+    //             From: "Barangay PH",
+    //             Subject: "Clearance/Permit Approved!",
+    //             Body: "Your clearance/permit is approved!"
+    //         }).then(
+    //             message => alert(message)
+    //         );
+    //     });
+
+
+
+
+
+
+
 
 //SECURITY--------------
      // Check for the token when the page loads

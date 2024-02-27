@@ -20,7 +20,7 @@
                                             <a href="{% url 'brgy_officials' %}" class="nav-link" data-key="t-chat">Brgy. Officials</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="{% url 'gov_admin' %}" class="nav-link">Governance & Admin</a>
+                                            <a href="{% url 'gov_admin' %}" class="nav-link">Governance & Ordinances</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a href="{% url 'projects' %}" class="nav-link">Project & Programs</a>
@@ -31,9 +31,9 @@
                                                     <li class="nav-item">
                                                         <a href="{% url 'clearance_permit' %}" class="nav-link">Clearance & Permits</a>
                                                         </li>
-                                                        <li class="nav-item">
+                                                        <!-- <li class="nav-item">
                                                             <a href="{% url 'doc_management' %}" class="nav-link">Document Management</a>
-                                                            </li>
+                                                            </li> -->
                                                      </ul>
                                             </div>
                                         </li>
@@ -90,30 +90,40 @@
                                         
                                                     </div>
                                                 </nav>
-      
-    
+<script src="https://unpkg.com/jwt-js-decode@1.8.2/dist/jwt-js-decode.pkg.min.js"></script>
+     <script>
+       //SECURITY--------------
+        // Check for the token when the page loads
 
- 
+        document.addEventListener("DOMContentLoaded", function() {
+            const token = localStorage.getItem('token');
+             if (token) {
+                 // Show the services content if the token is present
+                 document.getElementById('whole-content').style.display = 'block';
+             }  else {
+                 // Redirect to login if token is not present
+                 window.location.href = "/login";  // Adjust the login page URL if necessary
+             }
+             let decodedToken;
+      try {
+          decodedToken = jwtJsDecode.decode(token);
+      } catch (error) {
+          window.location.href = "/login";
+      }
 
-<script>
-    //CHECKING FOR USER'S TOKEN
-    document.addEventListener("DOMContentLoaded", function() {
-         var token = localStorage.getItem('token');
-         if (!token) {
-             // Redirect to login if token is not present
-             window.location.href = "/login";  // Adjust the login page URL if necessary
-         }
-     });
+      let usertype = decodedToken.payload.usertype;
 
-    // LOGOOUT
-    function logout() {
-        // Clear token from local storage
+      if (usertype !== 'Secretary') {
+        document.getElementById('whole-content').style.display = 'none';
+
+          logout(); 
+      }
+      function logout(){
         localStorage.removeItem('token');
-        
-        // Redirect to login page
-        window.location.href = "";  // Adjust the login page URL if necessary
-    }
+        window.location.href = "/login";
+      }
 
     // Attach the logout function to the logout button
     document.getElementById('logoutBtn').addEventListener('click', logout);
+});
 </script>

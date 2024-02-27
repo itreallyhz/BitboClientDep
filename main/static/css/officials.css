@@ -49,6 +49,9 @@ td, th, tr{
     text-align: center;
     cursor: pointer;
 }
+table{
+    font-size: 16px;
+}
 tbody tr:hover{
 background-color: lightblue;    
 }
@@ -59,14 +62,61 @@ form{
 margin-top: -20%;
 }
 .modal-content{
-    width: 200%;
-    margin-left: -45%;
+    width: 250%;
+}
+.modal-dialog{
+    margin-left: 20%;
 }
 .form-label1 span{
     color: red;
+    font-size: 16px;
 }
 .form-label1 {
     text-align: left;
     display: block;
-    font-size: medium;
+    font-size: 16px;
 }
+
+.btn{
+    font-size: 16px; /* Adjust the font size for the primary button */
+    /* You can add more styling properties as needed */
+
+  }
+
+  .search-box {
+    font-size: 16px; /* Adjust the font size for the search box */
+    /* You can add more styling properties as needed */
+  }
+
+  .search {
+    font-size: 16px; /* Adjust the font size for the search input */
+    /* You can add more styling properties as needed */
+  }
+  .btn-spacing{
+    margin-right: 6px;
+  }
+.modal-body input::placeholder,
+.modal-body input[type="date"],
+.modal-body input[type="file"],
+.modal-body select{
+    font-size: 16px;
+}
+  
+  /*id */
+  #first_name,
+  #middle_name,
+  #last_name,
+  #suffix,
+  #birthday,
+  #contact_no,
+  #email,
+
+  #occupation,
+  #start_term,
+  #end_term,
+  #formFile
+
+
+  {
+ font-size: 16px;
+  }
