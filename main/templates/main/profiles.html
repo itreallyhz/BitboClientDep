@@ -1113,7 +1113,7 @@ function loadResidents(page = 1, searchTerm = "", filteredData = null) {
     // If filtered data is not provided, make an AJAX request to fetch the data
     if (!data) {
         $.ajax({
-            url: "http://127.0.0.1:8000/residentprofiles/getp?page=" + page + "&limit=10&search=" + encodeURIComponent(searchTerm),
+            url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/residentprofiles/getp?page=" + page + "&limit=10&search=" + encodeURIComponent(searchTerm),
             type: "GET",
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem('token')
@@ -1263,7 +1263,7 @@ function updatePagination(currentPage, totalPages) {
     // DELETE RESIDENT
     function deleteResident(residentId) {
         $.ajax({
-            url: "http://127.0.0.1:8000/residentprofiles/" + residentId,
+            url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/residentprofiles/" + residentId,
             type: "DELETE",
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem('token')
@@ -1300,7 +1300,7 @@ $(document).on("click", ".btn-soft-secondary", function () {
         function getResidentforEdit(residentId) {
             console.log('Getting resident with ID:', residentId);
             $.ajax({
-                url: "http://127.0.0.1:8000/residentprofiles/" + residentId,
+                url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/residentprofiles/" + residentId,
                 type: "GET",
                 headers: {
                     "Authorization": "Bearer " + localStorage.getItem('token')
@@ -1439,7 +1439,7 @@ $(document).on("click", ".btn-soft-secondary", function () {
             console.log('Sending data to server:', residentData);
 
             $.ajax({
-                url: "http://127.0.0.1:8000/residentprofiles/" + residentId,
+                url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/residentprofiles/" + residentId,
                 type: "PUT",
                 contentType: "application/json",
                 data: JSON.stringify(residentData),
@@ -1565,7 +1565,7 @@ $(document).on("click", ".btn-soft-success", function () {
 function getResidentForView(residentId) {
     console.log('Getting resident with ID for view modal:', residentId);
     $.ajax({
-        url: "http://127.0.0.1:8000/residentprofiles/" + residentId,
+        url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/residentprofiles/" + residentId,
         type: "GET",
         headers: {
             "Authorization": "Bearer " + localStorage.getItem('token')
@@ -1727,7 +1727,7 @@ $("#filterButton").on("click", function () {
 
         // Make Ajax request to fetch filtered resident data
         $.ajax({
-            url: "http://127.0.0.1:8000/residentprofiles/getp",
+            url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/residentprofiles/getp",
             type: "GET",
             data: {
                 age: age,

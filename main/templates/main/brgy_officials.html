@@ -306,7 +306,7 @@ $(document).ready(function () {
     // Function to load barangay official data with pagination
     function loadBarangayOfficials(page = 1, searchTerm = "") {
         $.ajax({
-            url: "http://127.0.0.1:8000/barangayofficials/getp?page=" + page + "&limit=10&search=" + encodeURIComponent(searchTerm),
+            url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/barangayofficials/getp?page=" + page + "&limit=10&search=" + encodeURIComponent(searchTerm),
             type: "GET",
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem('token')
@@ -418,7 +418,7 @@ $(document).on("click", ".delete-btn", function () {
 // DELETE Barangay Official ---------------------------
 function deleteBarangayOfficial(barangayOfficialId) {
     $.ajax({
-        url: "http://127.0.0.1:8000/barangayofficials/" + barangayOfficialId,
+        url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/barangayofficials/" + barangayOfficialId,
         type: "DELETE",
         headers: {
             "Authorization": "Bearer " + localStorage.getItem('token')
@@ -457,7 +457,7 @@ function deleteBarangayOfficial(barangayOfficialId) {
         function getBarangayOfficialforEdit(barangayOfficialId) {
             console.log('Getting barangay official with ID:',  barangayOfficialId);
             $.ajax({
-                url: "http://127.0.0.1:8000/barangayofficials/" +  barangayOfficialId,
+                url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/barangayofficials/" +  barangayOfficialId,
                 type: "GET",
                 headers: {
                     "Authorization": "Bearer " + localStorage.getItem('token')
@@ -557,7 +557,7 @@ function updateBarangayOfficial(barangayOfficialId, barangayOfficialData) {
     console.log('Sending data to server:', barangayOfficialData);
 
     $.ajax({
-        url: "http://127.0.0.1:8000/barangayofficials/" + barangayOfficialId,
+        url: "https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/barangayofficials/" + barangayOfficialId,
         type: "PUT",
         data: barangayOfficialData, // Use the passed data directly
         processData: false,  // Important! Prevent jQuery from automatically processing the data
